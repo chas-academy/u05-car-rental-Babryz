@@ -1,0 +1,5 @@
+DROP DATABASE IF EXISTS carRental;
+CREATE DATABASE carRental;
+USE carRental;
+
+CREATE TABLE 
