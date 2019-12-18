@@ -6,7 +6,7 @@
       private $path, $form;
       
       public function __construct() {
-        $this->path = $_SERVER["REQUEST_URI"];
+        $this->path = substr($_SERVER["REQUEST_URI"], 1);
         $this->form = $_POST;
       }
 

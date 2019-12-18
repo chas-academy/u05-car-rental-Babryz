@@ -1,9 +1,9 @@
 # u05-car-rental
 
 ## TO DO
-### - Make function for loggin in to database.
+## - Write the views for all pages with Twig.
+#### - Make function for loggin in to database.
 ### - Figure out how to connect Twig.
-### - Write the views for all pages with Twig.
 ### - Figure out what data exactly needs to be in database.
 ### - ....
 
@@ -13,7 +13,11 @@
 ### - Customers
 ### - History
 ### - Add customer
+### - Customer added
 ### - Edit customer
+### - Customer edited
 ### - Add car
 ### - Edit car
+### - Car edited
 ### - Checkout car
+### - Check in car
