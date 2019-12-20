@@ -1,0 +1,36 @@
+<table border="1">
+    <th colspan="9"><h1>Cars</h1></th>
+    <tr>
+        <td>{{RegNr}}</td>
+        <td>{{Make}}</td>
+        <td>{{Year}}</td>
+        <td>{{Color}}</td>
+        <td>{{Price}}</td>
+        <td>{{Checked Out Time}}</td>
+        <td>{{Checked In time}}</td>
+        <td>
+            <form action="/editCar" method="POST">
+                <input type="submit" value="Edit">
+            </form>
+        </td>
+        <td>
+            <form action="/carRemoved">
+                <input type="submit" value="Remove">
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <form action="/addCar">
+                <input type="submit" value="Add Car">
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <form action="/" method="post">
+                <input type="submit" value="Main Menu">
+            </form>
+        </td>
+    </tr>
+</table>

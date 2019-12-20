@@ -3,11 +3,11 @@ create database carRental;
 use carRental;
 
 create table cars (regNr varchar(6) primary key, year integer, price integer);
-create table customers (ssNr bigint not null primary key, Name varchar(256), adress varchar(256), `postal Adress` varchar(256), phonenumber varchar(10));
+create table customers (ssNr bigint not null primary key, Name varchar(256), adress varchar(256), postalAdress varchar(256), phonenumber varchar(10));
 create table makes (make varchar(256) primary key);
 create table colors (color varchar(256) primary key);
 
-insert into customers(ssNr, Name, adress, `postal Adress`, phonenumber) values (199309230465, 'Kajsa Dahlgren', 'Västertorp 23A', '75272 Uppsala', '0735526970'), 
+insert into customers(ssNr, Name, adress, postalAdress, phonenumber) values (199309230465, 'Kajsa Dahlgren', 'Västertorp 23A', '75272 Uppsala', '0735526970'), 
                                                                                (195702130161, 'Stefan Backenfeldt', 'Fålhagsleden 27', '75272 Uppsala', '0767894256'),
                                                                                (197103130436, 'Karim Andersson', 'Stora torget 52', '75272 Uppsala', '0790597122'),
                                                                                (196712075016, 'Karin Malmberg', 'Lilla gatan 3', '75272 Uppsala', '0735526666'),
@@ -33,7 +33,6 @@ insert into makes(make) values ('Peugeot'),
                               ('Hyundai'),
                               ('Renault'),
                               ('Toyota'),
-                              ('Volkswagen'),
                               ('Chrystler');
 
 insert into colors(color) values ('Blue'),

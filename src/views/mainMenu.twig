@@ -1,0 +1,32 @@
+{% block mainMenu %}
+<table border="1" style="width: 70%;">
+    <th colspan="5"><h1>Babryz Car Rental</h1></th>
+    <tr>
+        <form action="/customers" method="POST">
+            <td>
+                <input type="submit" value="Customers" style="width: 100%;">
+            </td>
+        </form>
+        <form action="/cars" method="POST">
+            <td>
+                <input type="submit" value="Cars" style="width: 100%;">
+            </td>
+        </form>
+        <form action="/checkOut" method="POST">
+            <td>
+                <input type="submit" value="Check Out Car" style="width: 100%;">
+            </td>
+        </form>
+        <form action="/CheckIn" method="POST">
+            <td>
+                <input type="submit" value="Check In Car" style="width: 100%;">
+            </td>
+        </form>
+        <form action="/history" method="POST">
+            <td>
+                <input type="submit" value="History" style="width: 100%;">
+            </td>
+        </form>
+    </tr>
+</table>
+{% endblock %}

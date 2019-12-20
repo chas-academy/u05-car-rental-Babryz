@@ -1,0 +1,46 @@
+{% block editCustomer %}
+<table border="1">
+    <th colspan="1">Edit Customer</th>
+    <form action="/customerEdited" method="POST">
+        <tr>
+            <td>
+                <label for="ssNr">Personal Nr:</label>
+                <input type="text" name="ssNr" placeholder="ssNr..." required readonly>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="name">Name:</label>
+                <input type="text" name="name" placeholder="Name...">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="address">Adress:</label>
+                <input type="text" name="adress" placeholder="Adress...">
+            </td>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label  for="postal-adress">Postal Adress:</label >
+                <input type="text" name="postal-adress" required placeholder="Postal adress...">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label  for="phonennumber">Phonenumber:</label >
+                <input type="text" name="phonenumber" required placeholder="Phonenumber...">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Submit">
+            </td>
+        </tr>
+    </form>
+</table>
+<form action="/customers" method="POST">
+    <input type="submit" value="Customers">
+</form>
+{% endblock %}

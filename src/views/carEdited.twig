@@ -1,0 +1,6 @@
+{% block carEdited %}
+<p>{{make}} with registration number: {{regNr}} has been edited.</p>
+<form action="/cars" method="POST">
+    <input type="submit" value="OK">
+</form>
+{% endblock %}

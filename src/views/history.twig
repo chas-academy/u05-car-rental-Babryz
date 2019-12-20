@@ -1,0 +1,26 @@
+{% block history %}
+<table border="1">
+    <th colspan="6"><h1>History</h1></th>
+    % {{ for }} %
+    <tr>
+        <td>{{regnr}}</td>
+        <td>{{ssNr}}</td>
+        <td>{{Checkout time}}</td>
+        <td>{{Check in time}}</td>
+        <td>{{Days}}</td>
+        <td>{{Cost}}</td>
+    </tr>
+    % {{ endfor }} %
+    <tr>
+        <td colspan="5">Sum:</td>
+        <td colspan="1">{{sum}}</td>
+    </tr>
+    <tr>
+        <td colspan="6">
+            <form action="/" method="post">
+                <input type="submit" value="Main Menu">
+            </form>
+        </td>
+    </tr>
+</table>
+{% endblock %}

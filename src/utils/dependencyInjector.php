@@ -1,4 +1,5 @@
 <?php
+
     namespace Main\utils;
     use Main\exceptions\notFoundException;
 

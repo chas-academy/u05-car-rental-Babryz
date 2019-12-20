@@ -32,7 +32,7 @@
 
         public function getAllCars() {
             // Läser in alla bilar
-            $carRows = $this->connection->query("Create carView");
+            $carRows = $this->connection->prepare("Create carView");
             return $this->prepareCarRows($carRows);
         }
 

@@ -1,0 +1,6 @@
+{% block carAdded %}
+<p>New car with registration number: {{regNr}} has been added.</p>
+<form action="/cars" method="POST">
+    <input type="submit" value="OK">
+</form>
+{% endblock %}
