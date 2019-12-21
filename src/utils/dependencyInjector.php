@@ -1,7 +1,7 @@
 <?php
-
-    namespace Main\utils;
-    use Main\exceptions\notFoundException;
+    namespace Main\src\utils;
+    
+    //use Main\exceptions\notFoundException;
 
     class DependencyInjector {
         private $dependencies = [];
@@ -15,7 +15,7 @@
                 return $this->dependencies[$name];
             }
 
-            throw new NotFoundException($name . ': dependecy not found.');
+           // throw new NotFoundException($name . ': dependecy not found.');
         }
     }
 ?>

@@ -1,6 +1,5 @@
 <?php
-  
-  namespace Main\core;
+namespace Main\src\core;
   
   class Request {
       private $path, $form;
@@ -18,4 +17,3 @@
           return $this->form;      
       }
   }
-?>

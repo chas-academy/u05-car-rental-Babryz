@@ -1,5 +1,5 @@
 {
-    "name": "Babryz Cars",
+    "name": "babryz/cars",
     "description": "Manages a car rental system",
     "authors": [
         {
@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "main\\": "src"
+            "Main\\": ""
         }
     }
 }

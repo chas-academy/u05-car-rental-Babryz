@@ -4,6 +4,5 @@
       "database": "carRental",
       "user": "root",
       "password": "secret"
-    },
-    "log": "/var/log/bookstore.log"
+    }
   }

@@ -1,12 +1,10 @@
 <?php
-  
-  namespace Main\core;
+namespace Main\src\core;
 
   //use Main\controllers\errorController;
   //use Main\controllers\customerController;
-  //use Main\utils\dependecyInjector;
-
-  require_once '../utils/dependencyInjector.php';
+  use Main\utils\DependencyInjector;
+  use Main\src\controllers\MainMenuController;
   
   class Router {
       private $di;
@@ -27,12 +25,55 @@
             $params = isset($info["params"]) ? $info["params"]  : null;
 
             if ($this->match($route, $path, $params, $map)) {
-                $controllerName = '\Main\controllers\\'; . $info["controller"] . "controller";
+                $controllerName = 'Main\src\controllers\\' . $info["controller"] . "Controller";
                 $controller = new $controllerName($this->di, $request);
                 $methodName = $info["method"];
                 return call_user_func_array([$controller, $methodName], $map);
             }
         }
+      }
+
+      private function match($route, $path, $params, &$map) {
+        // $routeArray: ["editCustomer", ":customerNumber", ":customerName"]
+        // $pathArray ["editCustomer", "7", "Erik%20Dumas"]
+          
+        $routeArray = explode("/", $route);
+        $pathArray = explode("/", $path);
+        $routeSize = count($routeArray);
+        $pathSize = count($pathArray);    
+        
+        if ($routeSize === $pathSize) {
+          for ($index = 0; $index < $routeSize; ++$index) {
+            // $routeName: ":customerNumber"
+            // $pathName: "7"
+            $routeName = $routeArray[$index];
+            $pathName = $pathArray[$index];
+    
+            if ((strlen($routeName) > 0) && $routeName[0] === ":") {
+              // $key: "customerNumber"
+              // $value: "7"
+              $key = substr($routeName, 1);
+              $value = $pathName;
+              
+              // "customerNumber": "number",
+              if (($params != null) && isset($params[$key]) &&
+                  !$this->typeMatch($value, $params[$key])) {
+                return false;
+              }
+    
+              // $map["customerNumber"] = "7";
+              // $map["customerName"] = "Erik Dumas";
+              $map[$key] = urldecode($value); // "%20" => " ", urlcode: " " => "%20"
+            }
+            else if ($routeName !== $pathName) {
+              return false;
+            }
+          }
+          
+          return true;
+        }
+        
+        return false;
       }
   }
 
