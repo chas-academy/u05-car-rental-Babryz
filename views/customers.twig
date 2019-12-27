@@ -1,3 +1,38 @@
 {% block customers %}
-
+<table border="1px solid red">
+    <th colspan="7"><h1>Customers</h1></th>
+    {% for customer in customers %}
+    <tr>
+        <td>{{customer.ssNr}}</td>
+        <td>{{customer.name}}</td>
+        <td>{{customer.adress}}</td>
+        <td>{{customer.postalAdress}}</td>
+        <td>{{customer.phonenumber}}</td>
+        <td>
+            <form action="/editCustomer" method="POST">
+                <input type="submit" value="Edit">
+            </form>
+        </td>
+        <td>
+            <form action="/removedCustomer" method="POST">
+                <input type="submit" value="Remove">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    <tr colspan="7">
+        <td>
+            <form action="/addCustomer" method="POST">
+                <input type="submit" value="Add Customer">
+            </form>
+        </td>
+    </tr>
+    <tr colspan="7">
+        <td>
+            <form action="/" method="POST">
+                <input type="submit" value="Main Menu">
+            </form>
+        </td>
+    </tr>
+</table>
 {% endblock %}

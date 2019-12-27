@@ -2,9 +2,10 @@
 namespace Main\src\core;
 
   //use Main\controllers\errorController;
-  //use Main\controllers\customerController;
   use Main\utils\DependencyInjector;
   use Main\src\controllers\MainMenuController;
+  use Main\src\controllers\customerController;
+
   
   class Router {
       private $di;
