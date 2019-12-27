@@ -2,6 +2,7 @@
     namespace Main\src\models;
 
     use Main\src\models\AbstractModel;
+    use Main\src\core\Request;
     use PDO;
 
     class CustomerModel extends AbstractModel {
@@ -29,5 +30,15 @@
 
             return $customers;
 
+        }
+
+        public function addCustomer($ssNr, $name, $adress, $postalAdress, $phonenumber) {
+
+            $customerQuery = "INSERT INTO customers(ssNr, name, adress, postalAdress, phonenumber) " . "VALUES(:ssNr, :name, :adress, :postalAdress, :phonenumber)";
+            $customerStatement = $this->db->prepare($customerQuery);
+            $customerStatement->execute(["ssNr" => $ssNr, "name" => $name, "adress" => $adress, "postalAdress" => $postalAdress, "phonenumber" => $phonenumber]);
+            if (!$customerStatement) die("Fatal error.");
+
+            return;
         }
     }

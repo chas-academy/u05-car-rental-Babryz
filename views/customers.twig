@@ -9,7 +9,7 @@
         <td>{{customer.postalAdress}}</td>
         <td>{{customer.phonenumber}}</td>
         <td>
-            <form action="/editCustomer" method="POST">
+            <form action="/editCustomer/{{customer.ssNr}}/{{customer.name}}/{{customer.adress}}/{{customer.postalAdress}}/{{customer.phonenumber}}" method="POST">
                 <input type="submit" value="Edit">
             </form>
         </td>

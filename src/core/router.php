@@ -76,6 +76,18 @@ namespace Main\src\core;
         
         return false;
       }
+
+      private function typeMatch($value, $type) {
+        switch ($type) {
+          case "number": // ^: början, $: slutet, +: ett eller flera, *: noll eller flera, ?, exakt ett
+            return preg_match('/^[0-9]+$/', $value);
+        
+          case "string":
+            return preg_match('/^[%a-zA-Z0-9]+$/', $value);
+        }
+    
+        return true;
+      }
   }
 
 

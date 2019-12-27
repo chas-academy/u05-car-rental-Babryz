@@ -1,5 +1,5 @@
 {% block customerAdded %}
-<p>New customer with social security number: {{ssNr}} has been added. </p>
+<p>New customer {{customer.name}} with social security number: {{customer.ssNr}} has been added. </p>
 <form action="/customers" method="POST">
     <input type="submit" value="OK">
 </form>

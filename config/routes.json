@@ -37,13 +37,21 @@
         "controller": "Customer",
         "method": "addCustomer"
     },
-    "editCustomer/:ssNr/:name/": {
+    "customerAdded": {
         "controller": "Customer",
-        "method": "customerEdited",
+        "method": "customerAdded" 
+    },
+    "editCustomer/:ssNr/:name/:adress/:postalAdress/:phonenumber": {
+        "controller": "Customer",
+        "method": "editCustomer",
         "params": {
             "ssNr": "number",
             "make": "string"
         }
+    },
+    "customerEdited": {
+        "controller": "Customer",
+        "method": "customerEdited"
     },
     "removedCustomer/:ssNr/:name/": {
         "controller": "Customer",

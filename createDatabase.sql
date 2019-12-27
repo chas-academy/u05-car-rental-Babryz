@@ -6,6 +6,7 @@ create table cars (regNr varchar(6) primary key, year integer, price integer);
 create table customers (ssNr bigint not null primary key, name varchar(256), adress varchar(256), postalAdress varchar(256), phonenumber varchar(10));
 create table makes (make varchar(256) primary key);
 create table colors (color varchar(256) primary key);
+create table 
 
 insert into customers(ssNr, name, adress, postalAdress, phonenumber) values (199309230465, 'Kajsa Dahlgren', 'Västertorp 23A', '75254 Uppsala', '0735526970'), 
                                                                                (195702130161, 'Stefan Backenfeldt', 'Fålhagsleden 27', '75223 Uppsala', '0767894256'),
