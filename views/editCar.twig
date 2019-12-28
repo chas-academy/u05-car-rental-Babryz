@@ -1,21 +1,21 @@
 {% block editCar %}
 <table border="1">
-    <th colspan="1">Add Car</th>
-    <form action="/carAdded" method="POST">
+    <th colspan="1">Edit Car</th>
+    <form action="/carEdited" method="POST">
         <tr>
             <td>
-                <label for="regNr">Reg Number:</label>
-                <input type="text" name="regNr" placeholder="RegNr..." required readonly>
+                <label for="regNr">Registration Nr:</label>
+                <input type="text" name="regNr" placeholder="regNr..." required readonly value="{{regNr}}">
             </td>
         </tr>
         <tr>
             <td>
                 <label for="make">Make:</label>
                 <select name="make" required>
-                {# Current make as placeholder#}
-                % {{ for }} %
-                  <option value="make">{{makes}}</option>
-                % {{ endfor }} %
+                    <option>{{make}}</option>
+                {% for make in makes %}
+                    <option>{{make.getMake}}</option>
+                {% endfor %}
                 </select>
             </td>
         </tr>
@@ -23,23 +23,23 @@
             <td>
                 <label for="color">Color:</label>
                 <select name="color" required>
-                {# Current color as placeholder#}
-                % {{ for }} %
-                 <option value="color">{{colors}}</option>
-                % {{ endfor }} %
+                    <option>{{color}}</option>
+                {% for color in colors %}
+                    <option>{{color.getColor}}</option>
+                {% endfor %}
                 </select>
             </td>
         </tr>
         <tr>
             <td>
                 <label  for="year">Year:</label >
-                <input type="number" name="year" required placeholder="Year..." min="1900" max="2020">
+                <input type="text" name="year" required placeholder="year..." value="{{year}}">
             </td>
         </tr>
         <tr>
             <td>
                 <label  for="price">Price:</label >
-                <input type="text" name="price" required placeholder="Price...">
+                <input type="text" name="price" required placeholder="price..." value="{{price}}">
             </td>
         </tr>
         <tr>

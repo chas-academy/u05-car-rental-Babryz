@@ -11,17 +11,21 @@
         "controller": "Car",
         "method": "carAdded"
     },
-    "editCar/:regNr/:make": {
+    "editCar/:regNr/:make/:color/:year/:price": {
         "controller": "Car",
-        "method": "carEdited",
+        "method": "editCar",
         "params": {
             "ssNr": "string",
             "make": "string"
         }
     },
-    "removedCar/:regNr/:make": {
+    "carEdited": {
         "controller": "Car",
-        "method": "removedCar",
+        "method": "carEdited"
+    },
+    "removeCar/:regNr/:make": {
+        "controller": "Car",
+        "method": "removeCar",
         "params": {
             "ssNr": "string",
             "make": "string"

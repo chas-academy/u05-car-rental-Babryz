@@ -35,14 +35,12 @@
 
             $makes = [];
             foreach($makeRows as $makeRow) {
-                $make = htmlspecialchars($makeRow["make"]);
-
-                $map = ["make" => $make];
-                $makes[] = $map;
-                echo "Hellu";
+                $getMake = htmlspecialchars($makeRow["make"]);
+                
+                $make = ["getMake" => $getMake];
+                $makes[] = $make;
             }
 
-            if (!$makes) die("Fatal Error.");
             return $makes;
 
         }
@@ -54,14 +52,47 @@
 
             $colors = [];
             foreach($colorTableRows as $colorTableRow) {
-                $color = htmlspecialchars($colorTableRow["color"]);
+                $getColor = htmlspecialchars($colorTableRow["color"]);
                 
                 
-                $color = ["color" => $color];
+                $color = ["getColor" => $getColor];
                 
                 $colors[] = $color;
             }
 
             return $colors;
         }
+
+        public function addCar($regNr, $make, $color, $year, $price) {
+
+            $carQuery = "INSERT INTO cars(regNr, year, price, make, color) " . "VALUES(:regNr, :year, :price, :make, :color)";
+            $carStatement = $this->db->prepare($carQuery);
+            $carParameters = ["regNr" => $regNr, "year" => $year, "price" => $price, "make" => $make, "color" => $color];
+            $carStatement->execute($carParameters);
+            if (!$carStatement) die("Fatal error.");
+
+            return;
+        }
+
+        public function editCar($regNr, $newMake, $newColor, $newYear, $newPrice) {
+            $carQuery = "UPDATE cars 
+                              SET year = :year, price = :price, make = :make, color = :color
+                              WHERE regNr = :regNr";
+            $carStatement = $this->db->prepare($carQuery);
+            $carParameters = ["year" => $newYear, "price" => $newPrice, "make" => $newMake, "color" => $newColor, "regNr" => $regNr];
+            $carResult = $carStatement->execute($carParameters);
+            if (!$carResult) die("Fatal error.");
+
+            return;
+        }
+
+        public function removeCar($regNr) {
+            $carQuery  = "DELETE FROM cars WHERE regNr = :regNr";
+            $carStatement = $this->db->prepare($carQuery);
+            $carResult = $carStatement->execute(["regNr" => $regNr]);
+            if (!$carResult) die("Fatal Error.");
+
+            return;
+        }
+
     }

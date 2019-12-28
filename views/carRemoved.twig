@@ -1,3 +1,6 @@
 {% block carRemoved %}
-
+    <p>{{make}} with registration number: {{regNr}} has been removed.</p>
+    <form action="/cars" method="POST">
+        <input type="submit" value="OK">
+    </form>
 {% endblock %}

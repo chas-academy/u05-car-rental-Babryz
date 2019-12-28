@@ -13,7 +13,7 @@
                 <label for="make">Make:</label>
                 <select name="make" required>
                 {% for make in makes %}
-                  <option value="make">{{makes.getMake}}</option>
+                  <option>{{make.getMake}}</option>
                 {% endfor %}
                 </select>
             </td>
@@ -23,7 +23,7 @@
                 <label for="color">Color:</label>
                 <select name="color" required>
                 {% for color in colors %}
-                 <option value="color">{{colors.getColor}}</option>
+                 <option>{{color.getColor}}</option>
                 {% endfor %}
                 </select>
             </td>
