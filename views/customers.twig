@@ -1,6 +1,14 @@
 {% block customers %}
 <table border="1px solid red">
     <th colspan="7"><h1>Customers</h1></th>
+    <tr>
+        <td><b>Personal Number</b></td>
+        <td><b>Name</b></td>
+        <td><b>Adress</b></td>
+        <td><b>Postal Adress</b></td>
+        <td><b>Phonenumber</b></td>
+        <td colspan="2"></td>
+    </tr>
     {% for customer in customers %}
     <tr>
         <td>{{customer.ssNr}}</td>
@@ -14,7 +22,7 @@
             </form>
         </td>
         <td>
-            <form action="/removedCustomer/{{customer.ssNr}}/{{customer.name}}" method="POST">
+            <form action="/removeCustomer/{{customer.ssNr}}/{{customer.name}}" method="POST" onsubmit="return confirm('Are you sure you want to remove customer {{customer.ame}}?')">
                 <input type="submit" value="Remove">
             </form>
         </td>

@@ -1,7 +1,6 @@
 <?php
 namespace Main\src\core;
 
-  //use Main\controllers\errorController;
   use Main\utils\DependencyInjector;
   use Main\src\controllers\MainMenuController;
   use Main\src\controllers\customerController;

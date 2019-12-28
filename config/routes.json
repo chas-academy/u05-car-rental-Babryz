@@ -11,7 +11,7 @@
         "controller": "Car",
         "method": "carAdded"
     },
-    "editCar/:regNr/:make/": {
+    "editCar/:regNr/:make": {
         "controller": "Car",
         "method": "carEdited",
         "params": {
@@ -19,7 +19,7 @@
             "make": "string"
         }
     },
-    "removedCar/:regNr/:make/": {
+    "removedCar/:regNr/:make": {
         "controller": "Car",
         "method": "removedCar",
         "params": {
@@ -56,12 +56,12 @@
         "controller": "Customer",
         "method": "customerEdited"
     },
-    "removedCustomer/:ssNr/:name/": {
+    "removeCustomer/:ssNr/:name": {
         "controller": "Customer",
-        "method": "removedCustomer",
+        "method": "removeCustomer",
         "params": {
             "ssNr": "number",
-            "make": "string"
+            "name": "string"
         }
     },
 

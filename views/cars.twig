@@ -1,3 +1,40 @@
 {% block cars %}
-
+    <table border="1px solid red">
+    <th><h1>Cars</h1></th>
+    {% for customer in customers %}
+    <tr>
+        <td>{{car.regNr}}</td>
+        <td>{{car.make}}</td>
+        <td>{{car.color}}</td>
+        <td>{{car.year}}</td>
+        <td>{{car.price}}</td>
+        <td>{{car.checkedOut}}</td>
+        <td>{{car.checkedIn}}</td>
+        <td>
+            <form action="/editCar" method="POST">
+                <input type="submit" value="Edit">
+            </form>
+        </td>
+        <td>
+            <form action="/removedCar" method="POST">
+                <input type="submit" value="Remove">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td>
+            <form action="/addCar" method="POST">
+                <input type="submit" value="Add Car">
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <form action="/" method="POST">
+                <input type="submit" value="Main Menu">
+            </form>
+        </td>
+    </tr>
+</table>
 {% endblock %}

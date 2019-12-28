@@ -1,19 +1,21 @@
 <table border="1px solid red">
-    <th><h1>Customers</h1></th>
+    <th><h1>Cars</h1></th>
     {% for customer in customers %}
     <tr>
-        <td>{{customer.ssNr}}</td>
-        <td>{{customer.name}}</td>
-        <td>{{customer.adress}}</td>
-        <td>{{customer.postalAdress}}</td>
-        <td>{{customer.phonenumber}}</td>
+        <td>{{car.regNr}}</td>
+        <td>{{car.make}}</td>
+        <td>{{car.color}}</td>
+        <td>{{car.year}}</td>
+        <td>{{car.price}}</td>
+        <td>{{car.checkedOut}}</td>
+        <td>{{car.checkedIn}}</td>
         <td>
-            <form action="/editCustomer" method="POST">
+            <form action="/editCar" method="POST">
                 <input type="submit" value="Edit">
             </form>
         </td>
         <td>
-            <form action="/removedCustomer" method="POST">
+            <form action="/removedCar" method="POST">
                 <input type="submit" value="Remove">
             </form>
         </td>
@@ -21,8 +23,8 @@
     {% endfor %}
     <tr>
         <td>
-            <form action="/addCustomer" method="POST">
-                <input type="submit" value="Add Customer">
+            <form action="/addCar" method="POST">
+                <input type="submit" value="Add Car">
             </form>
         </td>
     </tr>
