@@ -1,7 +1,17 @@
 {% block cars %}
     <table border="1px solid red">
-    <th><h1>Cars</h1></th>
-    {% for customer in customers %}
+    <th colspan="9"><h1>Cars</h1></th>
+    <tr>
+        <td><b>Reg Number</b></td>
+        <td><b>Make</b></td>
+        <td><b>Color</b></td>
+        <td><b>Year</b></td>
+        <td><b>Price</b></td>
+        <td><b>Checkout time</b></td>
+        <td><b>Checkin time</b></td>
+        <td colspan"2"></td>
+    </tr>
+    {% for car in cars %}
     <tr>
         <td>{{car.regNr}}</td>
         <td>{{car.make}}</td>

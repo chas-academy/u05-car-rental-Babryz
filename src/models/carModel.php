@@ -19,13 +19,14 @@
                 $color = htmlspecialchars($carRow["color"]);
                 
                 $car = ["regNr" => $regNr,
-                        "name" => $name, 
-                        "adress" => $adress, 
-                        "postalAdress" => $postalAdress, 
-                        "phonenumber" => $phonenumber];
+                        "year" => $year, 
+                        "price" => $price, 
+                        "make" => $make, 
+                        "color" => $color];
                 
-                $customers[] = $customer;
+                $cars[] = $car;
             }
 
-            return $customers;
+            return $cars;
+        }
     }
