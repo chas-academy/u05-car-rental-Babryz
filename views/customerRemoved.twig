@@ -1,0 +1,6 @@
+{% block customerRemoved %}
+    <p>Customer with social security number: {{ssNr}} and name: {{name}} has been removed.
+    <form action="/customers" method="POST">
+    <input type="submit" value="OK">
+    </form>
+{% endblock %}

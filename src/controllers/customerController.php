@@ -43,6 +43,27 @@
         }
 
         public function customerEdited() {
+            $form = $this->request->getForm();
+            $ssNr = $form["ssNr"];
+            $newName = $form["name"];
+            $newAdress = $form["adress"];
+            $newPostalAdress = $form["postalAdress"];
+            $newPhonenumber = $form["phonenumber"];
             
+            $customerModel = new CustomerModel($this->db);
+            $customerModel->editCustomer($ssNr, $newName, $newAdress, $newPostalAdress, $newPhonenumber);
+
+            $properties = ["ssNr" => $ssNr, "name" => $newName, "adress" => $newAdress, "postalAdress" => $newPostalAdress, "phonenumber" => $newPhonenumber];
+
+            return $this->render("customerEdited.twig", $properties);
+        }
+
+        public function removeCustomer($ssNr, $name) {
+            $customerModel = new CustomerModel($this->db);
+            $customerModel->removeCustomer($ssNr);
+
+            $properties = ["ssNr" => $ssNr, "name" => $name];
+
+            return $this->render("customerRemoved.twig", $properties);
         }
     }

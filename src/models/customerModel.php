@@ -36,8 +36,30 @@
 
             $customerQuery = "INSERT INTO customers(ssNr, name, adress, postalAdress, phonenumber) " . "VALUES(:ssNr, :name, :adress, :postalAdress, :phonenumber)";
             $customerStatement = $this->db->prepare($customerQuery);
-            $customerStatement->execute(["ssNr" => $ssNr, "name" => $name, "adress" => $adress, "postalAdress" => $postalAdress, "phonenumber" => $phonenumber]);
+            $customerParameters = ["ssNr" => $ssNr, "name" => $name, "adress" => $adress, "postalAdress" => $postalAdress, "phonenumber" => $phonenumber];
+            $customerStatement->execute($customerParameters);
             if (!$customerStatement) die("Fatal error.");
+
+            return;
+        }
+
+        public function editCustomer($ssNr, $newName, $newAdress, $newPostalAdress, $newPhonenumber) {
+            $customerQuery = "UPDATE customers 
+                              SET name = :name, adress = :adress, postalAdress = :postalAdress, phonenumber = :phonenumber
+                              WHERE ssNr = :ssNr";
+            $customerStatement = $this->db->prepare($customerQuery);
+            $customerParameters = ["name" => $newName, "adress" => $newAdress, "postalAdress" => $newPostalAdress, "phonenumber" => $newPhonenumber, "ssNr" => $ssNr];
+            $customerResult = $customerStatement->execute($customerParameters);
+            if (!$customerResult) die("Fatal error.");
+
+            return;
+        }
+
+        public function removeCustomer($ssNr) {
+            $customerQuery  = "DELETE FROM customers WHERE ssNr = :ssNr";
+            $customerStatement = $this->db->prepare($customerQuery);
+            $customerResult = $customerStatement->execute(["ssNr" => $ssNr]);
+            if (!$customerResult) die("Fatal Error.");
 
             return;
         }

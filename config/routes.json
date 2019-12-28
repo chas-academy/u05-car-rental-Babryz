@@ -46,7 +46,10 @@
         "method": "editCustomer",
         "params": {
             "ssNr": "number",
-            "make": "string"
+            "make": "string",
+            "adress": "string",
+            "postalAdress": "string",
+            "phonenumber": "string"
         }
     },
     "customerEdited": {
