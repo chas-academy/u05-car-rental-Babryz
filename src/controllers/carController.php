@@ -12,4 +12,12 @@
             return $this->render("cars.twig", $properties);
         }
 
+        public function addCar() {
+            $carModel = new CarModel($this->db);
+            $carModel->makes();
+            $carModel->colors();
+            $properties = ["makes" => $makes, "colors" => $colors];
+            return $this->render("addCar.twig", $properties);
+        }
+
     }

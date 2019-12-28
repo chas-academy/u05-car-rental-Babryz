@@ -12,9 +12,9 @@
             <td>
                 <label for="make">Make:</label>
                 <select name="make" required>
-                % {{ for }} %
-                  <option value="make">{{makes}}</option>
-                % {{ endfor }} %
+                {% for make in makes %}
+                  <option value="make">{{makes.getMake}}</option>
+                {% endfor %}
                 </select>
             </td>
         </tr>
@@ -22,9 +22,9 @@
             <td>
                 <label for="color">Color:</label>
                 <select name="color" required>
-                % {{ for }} %
-                 <option value="color">{{colors}}</option>
-                % {{ endfor }} %
+                {% for color in colors %}
+                 <option value="color">{{colors.getColor}}</option>
+                {% endfor %}
                 </select>
             </td>
         </tr>

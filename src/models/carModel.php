@@ -8,7 +8,7 @@
     class CarModel extends AbstractModel {
         public function cars() {
             $carRows = $this->db->query("SELECT * FROM cars");
-            if (!$carRows) die($this->db->errorInfo());
+            if (!$carRows) die("Fatal Error.");
 
             $cars = [];
             foreach($carRows as $carRow) {
@@ -26,7 +26,42 @@
                 
                 $cars[] = $car;
             }
-
             return $cars;
+        }
+
+        public function makes() {
+            $makeRows = $this->db->query("SELECT * FROM makes");
+            if (!$makeRows) die("Fatal Error");
+
+            $makes = [];
+            foreach($makeRows as $makeRow) {
+                $make = htmlspecialchars($makeRow["make"]);
+
+                $map = ["make" => $make];
+                $makes[] = $map;
+                echo "Hellu";
+            }
+
+            if (!$makes) die("Fatal Error.");
+            return $makes;
+
+        }
+        
+
+        public function colors() {
+            $colorTableRows = $this->db->query("SELECT * FROM colors");
+            if (!$colorTableRows) die("Fatal Error");
+
+            $colors = [];
+            foreach($colorTableRows as $colorTableRow) {
+                $color = htmlspecialchars($colorTableRow["color"]);
+                
+                
+                $color = ["color" => $color];
+                
+                $colors[] = $color;
+            }
+
+            return $colors;
         }
     }
