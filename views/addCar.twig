@@ -1,53 +1,67 @@
 {% block addCar %}
 <table border="1">
-    <th colspan="1">Add Car</th>
+    <th colspan="2">Add Car</th>
     <form action="/carAdded" method="POST">
         <tr>
             <td>
                 <label for="regNr">Reg Number:</label>
+            </td>
+            <td>
                 <input type="text" name="regNr" placeholder="RegNr..." required>
             </td>
         </tr>
         <tr>
             <td>
                 <label for="make">Make:</label>
-                <select name="make" required>
-                {% for make in makes %}
-                  <option>{{make.getMake}}</option>
-                {% endfor %}
+            </td>
+            <td>
+                <select name="make" required style="width: 100%;">
+                    {% for make in makes %}
+                     <option>{{make.getMake}}</option>
+                    {% endfor %}
                 </select>
             </td>
         </tr>
         <tr>
             <td>
                 <label for="color">Color:</label>
-                <select name="color" required>
-                {% for color in colors %}
-                 <option>{{color.getColor}}</option>
-                {% endfor %}
+            </td>
+            <td>
+                <select name="color" required style="width: 100%;">
+                    {% for color in colors %}
+                     <option>{{color.getColor}}</option>
+                    {% endfor %}
                 </select>
             </td>
         </tr>
         <tr>
             <td>
                 <label  for="year">Year:</label >
-                <input type="number" name="year" required placeholder="Year..." min="1900" max="2020">
+            </td>
+            <td>
+                <input type="number" name="year" required placeholder="Year..." min="1900" max="2020" style="width: 100%;">
             </td>
         </tr>
         <tr>
             <td>
                 <label  for="price">Price:</label >
+            </td>
+            <td>
                 <input type="text" name="price" required placeholder="Price...">
             </td>
         </tr>
         <tr>
-            <td>
-                <input type="submit" value="Submit">
+            <td colspan="2">
+                <input type="submit" value="Submit" style="width: 100%;">
             </td>
         </tr>
     </form>
+        <tr>
+            <td colspan="2">
+                <form action="/cars" method="POST">
+                    <input type="submit" value="Cars" style="width: 100%;">
+                </form>
+            </td>
+        </tr>
 </table>
-<form action="/cars" method="POST">
-    <input type="submit" value="Cars">
-</form>
 {% endblock %}

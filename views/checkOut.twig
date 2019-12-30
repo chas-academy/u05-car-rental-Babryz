@@ -5,33 +5,39 @@
         <tr>
             <td>
                 <label for="customer">Customer:</label>
-                <select name="customer" required>
+            </td>
+            <td>
+                <select name="customer" required style="width: 100%;">
                     <option>--Select a customer--</option>
-                {% for customer in customers %}
-                    <option>{{customer.ssNr}} {{customer.name}}</option>
-                {% endfor %}
+                    {% for customer in customers %}
+                     <option>{{customer.ssNr}} {{customer.name}}</option>
+                    {% endfor %}
                 </select>
             </td>
         </tr>
         <tr>
             <td>
                 <label for="car">Car:</label>
-                <select name="car" required>
+            </td>
+            <td>
+                <select name="car" required style="width: 100%;">
                     <option>--Select a car--</option>
-                {% for car in cars %}
-                    <option>{{car.make}} {{car.regNr}}</option>
-                {% endfor %}
+                    {% for car in cars %}
+                     <option>{{car.make}} {{car.regNr}}</option>
+                    {% endfor %}
                 </select>
             </td>
         </tr>
-        <tr colspan="2">
-            <td>
-                <input type="submit" value="Check Out">
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Check Out" style="width: 100%;">
             </td>
-        </form>
-            <td>
+        </tr>
+    </form>
+        <tr>
+            <td colspan="2">
                 <form action="/" method="POST">
-                        <input type="submit" value="Main Menu">
+                        <input type="submit" value="Main Menu" style="width: 100%;">
                 </form>
             </td>
         </tr>
