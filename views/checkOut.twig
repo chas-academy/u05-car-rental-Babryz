@@ -5,20 +5,22 @@
         <tr>
             <td>
                 <label for="customer">Customer:</label>
-            </td>
-            <td>
-                <select name="customer">
-                    <option value="{{customers}}">{{customers}}</option>
+                <select name="customer" required>
+                    <option>--Select a customer--</option>
+                {% for customer in customers %}
+                    <option>{{customer.ssNr}} {{customer.name}}</option>
+                {% endfor %}
                 </select>
             </td>
         </tr>
         <tr>
             <td>
                 <label for="car">Car:</label>
-            </td>
-            <td>
-                <select name="car">
-                    <option value="{{available.cars}}">{{available.cars}}</option>
+                <select name="car" required>
+                    <option>--Select a car--</option>
+                {% for car in cars %}
+                    <option>{{car.make}} {{car.regNr}}</option>
+                {% endfor %}
                 </select>
             </td>
         </tr>

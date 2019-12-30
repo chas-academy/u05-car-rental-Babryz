@@ -7,7 +7,7 @@
 
     class CustomerModel extends AbstractModel {
         public function customers() {
-            $customerRows = $this->db->query("SELECT * FROM customers");
+            $customerRows = $this->db->query("SELECT * FROM customers where not ssNr=0");
             if (!$customerRows) die($this->db->errorInfo());
 
             $customers = [];
