@@ -16,5 +16,20 @@
             $properties = ["customers" => $customers, "cars" => $cars];
             return $this->render("checkOut.twig", $properties);
         }
+
+        public function checkIn() {
+            $carModel = new CarModel($this->db);
+            $cars = $carModel->cars();
+
+            $properties = ["cars" => $cars];
+            return $this->render("checkIn.twig", $properties);
+        }
         
+        public function checkedOut() {
+            return $this->render("checkedOut.twig", []);
+        }
+
+        public function checkedIn() {
+            return $this->render("checkedIn.twig", []);
+        }
     }

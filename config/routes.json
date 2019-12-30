@@ -78,6 +78,14 @@
         "controller": "Check",
         "method": "checkOut"
     },
+    "checkedIn": {
+        "controller": "Check",
+        "method": "checkedIn"
+    },
+    "checkedOut": {
+        "controller": "Check",
+        "method": "checkedOut"
+    },
 
 
     "history": {

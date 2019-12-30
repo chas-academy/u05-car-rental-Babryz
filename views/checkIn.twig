@@ -1,25 +1,30 @@
 {% block checkIn %}
 <table border="1px">
-    <th colspan="2"><h2>Check In</h2></th>
-    <form action="/carCheckedIn">
+    <th colspan="2"><h2>Check Out</h2></th>
+    <form action="/checkedIn">
         <tr>
             <td>
                 <label for="car">Car:</label>
             </td>
             <td>
-                <select name="car">
-                    <option value="{{checkOut.cars}}">{{available.cars}}</option>
+                <select name="car" required style="width: 100%;">
+                    <option>--Select a car--</option>
+                    {% for car in cars %}
+                     <option>{{car.make}} {{car.regNr}}</option>
+                    {% endfor %}
                 </select>
             </td>
         </tr>
-        <tr colspan="2">
-            <td>
-                <input type="submit" value="Check In">
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Check In" style="width: 100%;">
             </td>
-        </form>
-            <td>
+        </tr>
+    </form>
+        <tr>
+            <td colspan="2">
                 <form action="/" method="POST">
-                        <input type="submit" value="Main Menu">
+                        <input type="submit" value="Main Menu" style="width: 100%;">
                 </form>
             </td>
         </tr>

@@ -1,0 +1,6 @@
+{% block checkedIn %}
+<p>{{car.make}} with registration number: {{car.regNr}} has been checked in by {{customer.name}}.</p>
+<form action="/checkIn" method="POST">
+    <input type="submit" value="OK">
+</form>
+{% endblock %}
