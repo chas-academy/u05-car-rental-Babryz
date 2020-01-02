@@ -1,16 +1,16 @@
 {% block history %}
 <table border="1">
     <th colspan="6"><h1>History</h1></th>
-    % {{ for }} %
+    {% for histor in history %}
     <tr>
-        <td>{{regnr}}</td>
-        <td>{{ssNr}}</td>
-        <td>{{Checkout time}}</td>
-        <td>{{Check in time}}</td>
-        <td>{{Days}}</td>
-        <td>{{Cost}}</td>
+        <td>{{histor.regNr}}</td>
+        <td>{{histor.ssNr}}</td>
+        <td>{{histor.checkOut}}</td>
+        <td>{{histor.checkIn}}</td>
+        <td>{{histor.days}}</td>
+        <td>{{histor.cost}}</td>
     </tr>
-    % {{ endfor }} %
+    {% endfor %}
     <tr>
         <td colspan="5">Sum:</td>
         <td colspan="1">{{sum}}</td>
@@ -18,7 +18,7 @@
     <tr>
         <td colspan="6">
             <form action="/" method="post">
-                <input type="submit" value="Main Menu">
+                <input type="submit" value="Main Menu" style="width: 100%;">
             </form>
         </td>
     </tr>

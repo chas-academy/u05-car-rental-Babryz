@@ -23,7 +23,7 @@
                 <select name="car" required style="width: 100%;">
                     <option>--Select a car--</option>
                     {% for car in cars %}
-                     <option>{{car.make}} {{car.regNr}}</option>
+                     <option>{{car.regNr}} {{car.make}}</option>
                     {% endfor %}
                 </select>
             </td>

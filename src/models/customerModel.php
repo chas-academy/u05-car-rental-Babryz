@@ -63,4 +63,30 @@
 
             return;
         }
+
+        public function checkOutList() {
+            $customerRows = $this->db->query("SELECT * FROM customers where ssNr=0");
+            if (!$customerRows) die($this->db->errorInfo());
+
+            $customers = [];
+            foreach($customerRows as $customerRow) {
+                $ssNr = htmlspecialchars($customerRow["ssNr"]);
+                $nameCoded = htmlspecialchars($customerRow["name"]);
+                $name = utf8_encode($nameCoded);
+                $adress = htmlspecialchars($customerRow["adress"]);
+                $postalAdress = htmlspecialchars($customerRow["postalAdress"]);
+                $phonenumber = htmlspecialchars($customerRow["phonenumber"]);
+                
+                $customer = ["ssNr" => $ssNr,
+                             "name" => $name, 
+                             "adress" => $adress, 
+                             "postalAdress" => $postalAdress, 
+                             "phonenumber" => $phonenumber];
+                
+                $customers[] = $customer;
+            }
+
+            return $customers;
+
+        }
     }

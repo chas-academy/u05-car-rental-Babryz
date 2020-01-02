@@ -17,12 +17,14 @@
                 $price = htmlspecialchars($carRow["price"]);
                 $make = htmlspecialchars($carRow["make"]);
                 $color = htmlspecialchars($carRow["color"]);
+                $ssNr = htmlspecialchars($carRow["ssNr"]);
                 
                 $car = ["regNr" => $regNr,
                         "year" => $year, 
                         "price" => $price, 
                         "make" => $make, 
-                        "color" => $color];
+                        "color" => $color,
+                        "ssNr" => $ssNr];
                 
                 $cars[] = $car;
             }
@@ -94,5 +96,7 @@
 
             return;
         }
+
+        
 
     }

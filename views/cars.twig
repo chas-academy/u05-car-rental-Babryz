@@ -7,8 +7,8 @@
         <td><b>Color</b></td>
         <td><b>Year</b></td>
         <td><b>Price</b></td>
-        <td><b>Checkout time</b></td>
-        <td><b>Checkin time</b></td>
+        <td><b>Checked out by</b></td>
+        <td><b>Check out time</b></td>
         <td colspan="2"></td>
     </tr>
     {% for car in cars %}
@@ -18,18 +18,35 @@
         <td>{{car.color}}</td>
         <td>{{car.year}}</td>
         <td>{{car.price}}</td>
-        <td>{{car.checkedOut}}</td>
-        <td>{{car.checkedIn}}</td>
-        <td>
-            <form action="/editCar/{{car.regNr}}/{{car.make}}/{{car.color}}/{{car.year}}/{{car.price}}" method="POST">
-                <input type="submit" value="Edit">
-            </form>
-        </td>
-        <td>
-            <form action="/removeCar/{{car.regNr}}/{{car.make}}" method="POST" onsubmit="return confirm('Are you sure you want to remove {{car.make}} with regNr: {{car.regNr}}?')">
-                <input type="submit" value="Remove">
-            </form>
-        </td>
+        {% if car.ssNr == 0 %}
+            <td>Free</td>
+        {% else %}
+            <td>{{car.ssNr}}</td>
+        {% endif %}
+        <td>{{history.checkedIn}}</td>
+        {% if car.ssNr == 0 %}
+            <td>
+                <form action="/editCar/{{car.regNr}}/{{car.make}}/{{car.color}}/{{car.year}}/{{car.price}}" method="POST">
+                    <input type="submit" value="Edit">
+                </form>
+            </td>
+            <td>
+                <form action="/removeCar/{{car.regNr}}/{{car.make}}" method="POST" onsubmit="return confirm('Are you sure you want to remove {{car.make}} with regNr: {{car.regNr}}?')">
+                    <input type="submit" value="Remove">
+                </form>
+            </td>
+        {% else %}
+            <td>
+                <form action="/editCar/{{car.regNr}}/{{car.make}}/{{car.color}}/{{car.year}}/{{car.price}}" method="POST">
+                    <input type="submit" value="Edit" disabled style="color: white;">
+                </form>
+            </td>
+            <td>
+                <form action="/removeCar/{{car.regNr}}/{{car.make}}" method="POST" onsubmit="return confirm('Are you sure you want to remove {{car.make}} with regNr: {{car.regNr}}?')">
+                    <input type="submit" value="Remove" disabled style="color: white;">
+                </form>
+            </td>
+        {% endif %}
     </tr>
     {% endfor %}
     <tr>
