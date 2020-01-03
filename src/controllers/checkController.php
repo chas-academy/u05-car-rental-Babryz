@@ -4,6 +4,7 @@
     use Main\src\controllers\AbstractController;
     use Main\src\models\CheckModel;
     use Main\src\models\CustomerModel;
+    use Main\src\models\HistoryModel;
 
     class CheckController extends AbstractController {
 
@@ -35,6 +36,8 @@
 
             $checkModel = new CheckModel($this->db);
             $checkModel->checkOut($ssNr, $regNr);
+            $historyModel = new HistoryModel($this->db);
+            $historyModel->checkOut($ssNr, $regNr);
 
             $properties  = ["customer" => $customer, "car" => $car];
             return $this->render("checkedOut.twig", $properties);
@@ -48,6 +51,8 @@
 
             $checkModel = new CheckModel($this->db);
             $checkModel->checkIn($regNr);
+            $historyModel = new HistoryModel($this->db);
+            $historyModel->checkIn($regNr);
 
             $properties  = ["car" => $car];
             return $this->render("checkedIn.twig", $properties);

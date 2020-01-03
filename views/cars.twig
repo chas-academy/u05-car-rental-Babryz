@@ -17,13 +17,13 @@
         <td>{{car.make}}</td>
         <td>{{car.color}}</td>
         <td>{{car.year}}</td>
-        <td>{{car.price}}</td>
+        <td>{{car.price}}$/day</td>
         {% if car.ssNr == 0 %}
-            <td>Free</td>
+            <td colspan="2">Free</td>
         {% else %}
             <td>{{car.ssNr}}</td>
+            <td>{{car.checkOutTime}}</td>
         {% endif %}
-        <td>{{history.checkedIn}}</td>
         {% if car.ssNr == 0 %}
             <td>
                 <form action="/editCar/{{car.regNr}}/{{car.make}}/{{car.color}}/{{car.year}}/{{car.price}}" method="POST">

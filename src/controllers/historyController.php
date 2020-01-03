@@ -6,6 +6,7 @@
 
     class HistoryController extends AbstractController {
         public function viewHistory() {
+            
             $historyModel = new HistoryModel($this->db);
             $history = $historyModel->viewHistory();
 

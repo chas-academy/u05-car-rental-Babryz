@@ -1,23 +1,6 @@
 # u05-car-rental
 
-## TO DO
-### - Write the views for all pages with Twig.
-### - Make function for loggin in to database.
-### - Figure out how to connect Twig.
-### - Figure out what data exactly needs to be in database.
-### - ....
-
-## PAGES NEEDED
-### - MainMenu
-### - Cars
-### - Customers (is mainMenu.twig)
-### - History
-### - Add customer
-### - Customer added
-### - Edit customer
-### - Customer edited
-### - Add car
-### - Edit car
-### - Car edited
-### - Checkout car
-### - Check in car
+## Left To Do
+### Make checks on ssNr, phonenumber, regNr
+### Make check when removing customer to see if customer has any cars atm.
+### Fix the goddamn error when renting same car twice...

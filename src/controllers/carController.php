@@ -3,6 +3,7 @@
 
     use Main\src\controllers\AbstractController;
     use Main\src\models\CarModel;
+    use Main\src\models\HistoryModel;
 
     class CarController extends AbstractController {
         public function cars() {

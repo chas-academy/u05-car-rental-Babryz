@@ -31,17 +31,11 @@
         }
 
         public function checkOut($ssNr, $regNr) {
-            $checkQuery = "UPDATE cars SET ssNr = :ssNr WHERE regNr = :regNr";
+            $checkQuery = "UPDATE cars SET ssNr = :ssNr, checkOutTime = CURRENT_TIMESTAMP WHERE regNr = :regNr";
             $checkStatement = $this->db->prepare($checkQuery);
             $checkParameters = ["ssNr" => $ssNr, "regNr" => $regNr];
             $checkStatement->execute($checkParameters);
             if (!$checkStatement) die("Fatal Error.");
-
-            $historyQuery = "INSERT INTO history(regNr, ssNr) " . "VALUES (:regNr, :ssNr)";
-            $historyStatement = $this->db->prepare($historyQuery);
-            $historyParameters = ["regNr" => $regNr, "ssNr" => $ssNr];
-            $historyStatement->execute($historyParameters);
-            if (!$historyStatement) die("Fatal Error.");
         }
 
         public function checkInList() {
@@ -73,12 +67,15 @@
                 $checkParameters = ["regNr" => $regNr];
                 $checkStatement->execute($checkParameters);
                 if (!$checkStatement) die("Fatal Error.");
-
-                $historyQuery = "UPDATE history SET checkInTime = CURRENT_TIMESTAMP WHERE regNr = :regNr";
-                $historyStatement = $this->db->prepare($historyQuery);
-                $historyParameters = ["regNr" => $regNr];
-                $historyStatement->execute($historyParameters);
-                if (!$historyStatement) die("Fatal Error.");
             }
+        
+        public function formHandler() {
+                $form = $this->request->getForm();
+                $customer = $form["customer"];
+                $car = $form["car"];
     
+                $formValues = array($customer, $car);
+    
+                return $formValues;
+            }
     }

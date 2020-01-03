@@ -21,6 +21,7 @@
             $historyParameters = ["regNr" => $regNr];
             $historyStatement->execute($historyParameters);
             if (!$historyStatement) die("Fatal Error.");
+
         }
 
         public function viewHistory() {
@@ -47,4 +48,5 @@
             }
             return $history;
         }
+
     }

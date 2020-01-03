@@ -12,14 +12,16 @@ create table cars (regNr varchar(6), primary key(regNr),
                    price integer,
                    make varchar(256), foreign key(make) references makes(make),
                    color varchar(256), foreign key(color) references colors(color),
-                   ssNr bigint default 0, foreign key(ssNr) references customers(ssNr));
+                   ssNr bigint default 0, foreign key(ssNr) references customers(ssNr),
+                   checkOutTime datetime default current_timestamp);
 
 create table history (regNr varchar(6), foreign key(regNr) references cars(regNr),
                       ssNr bigint not null, foreign key(ssNr) references customers(ssNr),
                       checkOutTime datetime default current_timestamp,
                       checkInTime datetime,
                       days int,
-                      cost int); 
+                      cost int,
+                      rentId int auto_increment, primary key(rentId));
 
 
 

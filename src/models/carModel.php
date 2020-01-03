@@ -18,13 +18,15 @@
                 $make = htmlspecialchars($carRow["make"]);
                 $color = htmlspecialchars($carRow["color"]);
                 $ssNr = htmlspecialchars($carRow["ssNr"]);
+                $checkOutTime = htmlspecialchars($carRow["checkOutTime"]);
                 
                 $car = ["regNr" => $regNr,
                         "year" => $year, 
                         "price" => $price, 
                         "make" => $make, 
                         "color" => $color,
-                        "ssNr" => $ssNr];
+                        "ssNr" => $ssNr,
+                        "checkOutTime" => $checkOutTime];
                 
                 $cars[] = $car;
             }
