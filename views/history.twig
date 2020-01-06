@@ -1,19 +1,27 @@
 {% block history %}
-<table border="1">
+<table border="1" style="width: 80%;">
     <th colspan="6"><h1>History</h1></th>
+    <tr>
+        <td><b>Reg number:</b></td>
+        <td><b>Personal number:</b></td>
+        <td><b>Checkout Time:</b></td>
+        <td><b>Checkin Time:</b></td>
+        <td><b>Days:</b></td>
+        <td><b>Total price:</b></td>
+    </tr>
     {% for histor in history %}
     <tr>
         <td>{{histor.regNr}}</td>
         <td>{{histor.ssNr}}</td>
         <td>{{histor.checkOut}}</td>
         <td>{{histor.checkIn}}</td>
-        <td>0</td>
+        <td>{{histor.days}}</td>
         <td>0</td>
     </tr>
     {% endfor %}
     <tr>
-        <td colspan="5">Sum:</td>
-        <td colspan="1">{{sum}}</td>
+        <td colspan="5"><b>Sum:</b></td>
+        <td colspan="1"><b>{{sum}}</b></td>
     </tr>
     <tr>
         <td colspan="6">

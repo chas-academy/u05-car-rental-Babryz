@@ -20,8 +20,7 @@ create table history (regNr varchar(6), foreign key(regNr) references cars(regNr
                       checkOutTime datetime default current_timestamp,
                       checkInTime datetime,
                       days int,
-                      cost int,
-                      rentId int auto_increment, primary key(rentId));
+                      cost int);
 
 
 

@@ -45,20 +45,29 @@
             $cars = [];
             foreach($carRows as $carRow) {
                 $regNr = htmlspecialchars($carRow["regNr"]);
-                $year = htmlspecialchars($carRow["year"]);
                 $price = htmlspecialchars($carRow["price"]);
                 $make = htmlspecialchars($carRow["make"]);
-                $color = htmlspecialchars($carRow["color"]);
+                $ssNr = htmlspecialchars($carRow["ssNr"]);
                 
                 $car = ["regNr" => $regNr,
-                        "year" => $year, 
                         "price" => $price, 
                         "make" => $make, 
-                        "color" => $color];
+                        "ssNr" => $ssNr];
                 
                 $cars[] = $car;
             }
             return $cars;
+        }
+
+        public function getSsNr($regNr) {
+            $checkQuery = "SELECT ssNr FROM cars WHERE regNr = :regNr";
+            $checkStatement = $this->db->prepare($checkQuery);
+            $checkParameters = ["regNr" => $regNr];
+            $checkStatement->execute($checkParameters);
+            if (!$checkStatement) die("Fatal Error.");
+            $ssNr = $checkStatement->fetch();
+
+            return $ssNr['ssNr'];
         }
 
         public function checkIn($regNr) {
@@ -68,14 +77,5 @@
                 $checkStatement->execute($checkParameters);
                 if (!$checkStatement) die("Fatal Error.");
             }
-        
-        public function formHandler() {
-                $form = $this->request->getForm();
-                $customer = $form["customer"];
-                $car = $form["car"];
-    
-                $formValues = array($customer, $car);
-    
-                return $formValues;
-            }
+            
     }

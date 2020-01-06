@@ -50,11 +50,14 @@
             $regNr = substr($car, 0, 6);
 
             $checkModel = new CheckModel($this->db);
+            $ssNr = $checkModel->getSsNr($regNr);
             $checkModel->checkIn($regNr);
             $historyModel = new HistoryModel($this->db);
-            $historyModel->checkIn($regNr);
+            $historyModel->checkIn($regNr, $ssNr);
+            $historyModel->setDays($regNr, $ssNr);
 
-            $properties  = ["car" => $car];
+            $properties  = ["car" => $car, "ssNr" => $ssNr];
             return $this->render("checkedIn.twig", $properties);
         }
+
     }
