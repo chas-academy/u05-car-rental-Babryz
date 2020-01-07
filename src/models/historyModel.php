@@ -44,6 +44,8 @@
                 $minutes = $difference->days * 24 * 60;
                 $minutes += $difference->h * 60;
                 $minutes += $difference->i;
+
+                echo $difference->i;
                 
                 $days = $minutes / 60 / 24;
                 
@@ -59,8 +61,10 @@
                 }
                 
                 } else {
-                    $checkOut = htmlspecialchars($historyRows["checkOutTime"]);
-                    $checkIn = htmlspecialchars($historyRows["checkInTime"]);
+                    $time = $historyStatement->fetch();
+
+                    $checkOut = $time["checkOutTime"];
+                    $checkIn = $time["checkInTime"];
                     
                     $checkOutTime = new \DateTime($checkOut);
                     $checkInTime = new \DateTime($checkIn);
@@ -115,7 +119,6 @@
             } else {
                 $time = $historyStatement->fetch();
                 $days = $time["days"];
-                echo $days * $dailyPrice;
                 $cost = $dailyPrice * $days;
 
                 $historyQuery = "UPDATE history SET cost = :cost WHERE regNr = :regNr AND ssNr = :ssNr";
