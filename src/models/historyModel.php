@@ -110,4 +110,22 @@
             return $history;
         }
 
+        public function removeCarHistory($regNr) {
+            $historyQuery = "DELETE FROM history WHERE regNr = :regNr";
+            $historyStatement = $this->db->prepare($historyQuery);
+            $historyStatement->execute(["regNr" => $regNr]);
+            if (!$historyStatement) die("Fatal Error History");
+
+            return;
+        }
+
+        public function removeCustomerHistory($ssNr) {
+            $historyQuery = "DELETE FROM history WHERE ssNr = :ssNr";
+            $historyStatement = $this->db->prepare($historyQuery);
+            $historyStatement->execute(["ssNr" => $ssNr]);
+            if (!$historyStatement) die("Fatal Error History");
+
+            return;
+        }
+
     }

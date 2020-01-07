@@ -3,6 +3,7 @@
 
     use Main\src\controllers\AbstractController;
     use Main\src\models\CustomerModel;
+    use Main\src\models\HistoryModel;
 
     class CustomerController extends AbstractController {
         public function customers() {
@@ -61,6 +62,8 @@
         public function removeCustomer($ssNr, $name) {
             $customerModel = new CustomerModel($this->db);
             $customerModel->removeCustomer($ssNr);
+            $historyModel = new HistoryModel($this->db);
+            $historyModel->removeCustomerHistory($ssNr);
 
             $properties = ["ssNr" => $ssNr, "name" => $name];
 

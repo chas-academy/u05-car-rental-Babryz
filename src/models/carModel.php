@@ -93,8 +93,8 @@
         public function removeCar($regNr) {
             $carQuery  = "DELETE FROM cars WHERE regNr = :regNr";
             $carStatement = $this->db->prepare($carQuery);
-            $carResult = $carStatement->execute(["regNr" => $regNr]);
-            if (!$carResult) die("Fatal Error.");
+            $carStatement->execute(["regNr" => $regNr]);
+            if (!$carStatement) die("Fatal Error Car.");
 
             return;
         }

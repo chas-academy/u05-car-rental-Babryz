@@ -70,6 +70,8 @@
         public function removeCar($regNr, $make) {
             $carModel = new CarModel($this->db);
             $carModel->removeCar($regNr);
+            $historyModel = new HistoryModel($this->db);
+            $historyModel->removeCarHistory($regNr);
 
             $properties = ["regNr" => $regNr, "make" => $make];
 

@@ -58,8 +58,8 @@
         public function removeCustomer($ssNr) {
             $customerQuery  = "DELETE FROM customers WHERE ssNr = :ssNr";
             $customerStatement = $this->db->prepare($customerQuery);
-            $customerResult = $customerStatement->execute(["ssNr" => $ssNr]);
-            if (!$customerResult) die("Fatal Error.");
+            $customerStatement->execute(["ssNr" => $ssNr]);
+            if (!$customerStatement) die("Fatal Error.");
 
             return;
         }
