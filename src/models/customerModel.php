@@ -56,12 +56,21 @@
         }
 
         public function removeCustomer($ssNr) {
-            $customerQuery  = "DELETE FROM customers WHERE ssNr = :ssNr";
+            $customerQuery = "SELECT COUNT(*) FROM cars WHERE ssNr = :ssNr";
             $customerStatement = $this->db->prepare($customerQuery);
-            $customerStatement->execute(["ssNr" => $ssNr]);
-            if (!$customerStatement) die("Fatal Error.");
-
-            return;
+            $customerResult = $customerStatement->execute(["ssNr" => $ssNr]);
+            if (!$customerResult) die("Fatal Error.");
+            $carRows = $customerStatement->fetchAll();
+            $numberOfCars = htmlspecialchars($carRows[0]["COUNT(*)"]);
+            
+            if ($numberOfCars == 0) {
+                $customerQuery  = "DELETE FROM customers WHERE ssNr = :ssNr";
+                $customerStatement = $this->db->prepare($customerQuery);
+                $customerStatement->execute(["ssNr" => $ssNr]);
+                if (!$customerStatement) die("Fatal Error.");
+            }
+            
+            return $numberOfCars;
         }
 
         public function checkOutList() {

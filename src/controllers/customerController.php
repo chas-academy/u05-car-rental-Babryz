@@ -61,11 +61,17 @@
 
         public function removeCustomer($ssNr, $name) {
             $customerModel = new CustomerModel($this->db);
-            $customerModel->removeCustomer($ssNr);
-            $historyModel = new HistoryModel($this->db);
-            $historyModel->removeCustomerHistory($ssNr);
+            $numberOfCars = $customerModel->removeCustomer($ssNr);
 
-            $properties = ["ssNr" => $ssNr, "name" => $name];
+            if ($numberOfCars == 0) {
+                $historyModel = new HistoryModel($this->db);
+                $historyModel->removeCustomerHistory($ssNr);
+            }
+            
+
+            $properties = ["ssNr" => $ssNr, 
+                           "name" => $name, 
+                           "numberOfCars" => $numberOfCars];
 
             return $this->render("customerRemoved.twig", $properties);
         }
