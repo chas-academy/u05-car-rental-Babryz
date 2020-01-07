@@ -55,6 +55,7 @@
             $historyModel = new HistoryModel($this->db);
             $historyModel->checkIn($regNr, $ssNr);
             $historyModel->setDays($regNr, $ssNr);
+            $historyModel->setTotalPrice($regNr, $ssNr);
 
             $properties  = ["car" => $car, "ssNr" => $ssNr];
             return $this->render("checkedIn.twig", $properties);

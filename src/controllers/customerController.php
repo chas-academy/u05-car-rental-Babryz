@@ -67,8 +67,7 @@
                 $historyModel = new HistoryModel($this->db);
                 $historyModel->removeCustomerHistory($ssNr);
             }
-            
-
+        
             $properties = ["ssNr" => $ssNr, 
                            "name" => $name, 
                            "numberOfCars" => $numberOfCars];

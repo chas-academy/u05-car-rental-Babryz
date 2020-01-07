@@ -25,7 +25,7 @@
         }
 
         public function setDays($regNr, $ssNr) {
-            $historyQuery = "SELECT * FROM history WHERE regNr = :regNr AND ssnr = :ssNr";
+            $historyQuery = "SELECT * FROM history WHERE regNr = :regNr AND ssNr = :ssNr";
             $historyStatement = $this->db->prepare($historyQuery);
             $historyParameters = ["regNr" => $regNr, "ssNr" => $ssNr];
             $historyRows = $historyStatement->execute($historyParameters);
@@ -51,9 +51,9 @@
                     $days = 1;
                 }
             
-                $historyQuery = "UPDATE history SET days = :days WHERE regNr = :regNr";
+                $historyQuery = "UPDATE history SET days = :days WHERE regNr = :regNr AND ssNr = :ssNr";
                 $historyStatement = $this->db->prepare($historyQuery);
-                $historyParameters = ["regNr" => $regNr, "days" => $days];
+                $historyParameters = ["days" => $days, "regNr" => $regNr, "ssNr" => $ssNr];
                 $historyStatement->execute($historyParameters);
                 if (!$historyStatement) die("Fatal Error");
                 }
@@ -76,12 +76,54 @@
                         $days = 1;
                     }
                 
-                    $historyQuery = "UPDATE history SET days = :days WHERE regNr = :regNr";
+                    $historyQuery = "UPDATE history SET days = :days WHERE regNr = :regNr AND ssNr = :ssNr";
                     $historyStatement = $this->db->prepare($historyQuery);
-                    $historyParameters = ["regNr" => $regNr, "days" => $days];
+                    $historyParameters = ["days" => $days, "regNr" => $regNr, "ssNr" => $ssNr];
                     $historyStatement->execute($historyParameters);
                     if (!$historyStatement) die("Fatal Error");
                 }
+        }
+
+        public function setTotalPrice($regNr, $ssNr) {
+            $historyQuery = "SELECT * FROM history WHERE regNr = :regNr AND ssnr = :ssNr";
+            $historyStatement = $this->db->prepare($historyQuery);
+            $historyParameters = ["regNr" => $regNr, "ssNr" => $ssNr];
+            $historyRows = $historyStatement->execute($historyParameters);
+            if (!$historyRows) die("Fatal Error");
+
+            $priceQuery = "SELECT price FROM cars WHERE regNr = :regNr";
+            $priceStatement = $this->db->prepare($priceQuery);
+            $priceStatement->execute(["regNr" => $regNr]);
+            if (!$priceStatement) die("Fatal Error.");
+            $prices = $priceStatement->fetch();
+            $dailyPrice = $prices["price"];
+
+            if (is_array($historyRows) || is_object($historyRows)) {
+                
+                foreach ($historyRows as $historyRow) {
+                $days = htmlspecialchars($historyRow["days"]);
+                $cost = $dailyPrice * $days;
+                echo $days;
+
+                $historyQuery = "UPDATE history SET cost = :cost WHERE regNr = :regNr AND ssNr = :ssNr";
+                $historyStatement = $this->db->prepare($historyQuery);
+                $historyParameters = ["cost" => $cost, "regNr" => $regNr, "ssNr" => $ssNr];
+                $historyStatement->execute($historyParameters);
+                if (!$historyStatement) die("Fatal Error");
+                }
+
+            } else {
+                $time = $historyStatement->fetch();
+                $days = $time["days"];
+                echo $days * $dailyPrice;
+                $cost = $dailyPrice * $days;
+
+                $historyQuery = "UPDATE history SET cost = :cost WHERE regNr = :regNr AND ssNr = :ssNr";
+                $historyStatement = $this->db->prepare($historyQuery);
+                $historyParameters = ["cost" => $cost, "regNr" => $regNr, "ssNr" => $ssNr];
+                $historyStatement->execute($historyParameters);
+                if (!$historyStatement) die("Fatal Error");
+            }
         }
 
         public function viewHistory() {
