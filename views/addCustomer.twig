@@ -1,13 +1,13 @@
 {% block addCustomer %}
 <table border="1">
     <th colspan="2">Add Customer</th>
-    <form action="/customerAdded" method="POST">
+    <form action="/customerAdded" method="POST" onsubmit="return checkSubmit();">
         <tr>
             <td>
                 <label for="ssNr">Personal Nr:</label>
             </td>
             <td>
-                <input type="text" name="ssNr" placeholder="ssNr..." required>
+                <input type="text" name="ssNr" id="ssNr" placeholder="yymmddcccc" required>
             </td>
         </tr>
         <tr>
@@ -15,7 +15,7 @@
                 <label for="name">Name:</label>
             </td>
             <td>
-                <input type="text" name="name" placeholder="Name...">
+                <input type="text" name="name" placeholder="Name..." required>
             </td>
         </tr>
         <tr>
@@ -23,13 +23,13 @@
                 <label for="address">Adress:</label>
             </td>
             <td>
-                <input type="text" name="adress" placeholder="Adress...">
+                <input type="text" name="adress" placeholder="Adress..." required>
             </td>
             </td>
         </tr>
         <tr>
             <td>
-                <label  for="postalAdress">Postal Adress:</label >
+                <label  for="postalAdress">Postal Adress:</label>
             </td>
             <td>
                 <input type="text" name="postalAdress" required placeholder="Postal adress...">
@@ -37,7 +37,7 @@
         </tr>
         <tr>
             <td>
-                <label  for="phonennumber">Phonenumber:</label >
+                <label  for="phonennumber">Phonenumber:</label>
             </td>
             <td>
                 <input type="text" name="phonenumber" required placeholder="Phonenumber...">
@@ -45,7 +45,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <input type="submit" value="Submit" style="width: 100%;">
+                <input type="submit" value="Submit" id="submitBtn" style="width: 100%;">
             </td>
         </tr>
     </form>
@@ -57,4 +57,44 @@
             </td>
         </tr>
 </table>
+<h1 id="warning" style="display: none; font-size: 15px;"></h1>
+<footer>
+    <script>
+        
+        let ssNrInput = document.getElementById("ssNr");
+        ssNrInput.addEventListener('change', getSsNr);
+        let warningMessage = document.getElementById("warning");
+        //submitBtn = document.getElementById("submitBtn");
+        //submitBtn.addEventListener("submit", return checkSubmit);
+
+        submitOk = true;
+        ssNr = 0;
+
+
+        function getSsNr() {
+            ssNr = this.value;
+        }
+
+        function validateSsNr() {
+            if (ssNr.length == 10) {
+                submitOk = true;
+            } else {
+                submitOk = false;
+            }
+        }
+
+        function checkSubmit() {
+            validateSsNr();
+            if (submitOk == true) {
+                return true;
+            } else {
+                warning.style.display = "block";
+                warning.innerHTML = "ERROR!!! Personal Number must be 10 characters long.";
+                return false;
+            }
+        }
+        
+
+    </script>
+</footer>
 {% endblock %}
