@@ -31,7 +31,7 @@
             $customer = $form["customer"];
             $car = $form["car"];
 
-            $ssNr  = substr($customer, 0, 12);
+            $ssNr  = substr($customer, 0, 10);
             $regNr = substr($car, 0, 6);
 
             $checkModel = new CheckModel($this->db);

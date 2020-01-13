@@ -1,13 +1,13 @@
 {% block editCustomer %}
 <table border="1">
     <th colspan="2">Edit Customer</th>
-    <form action="/customerEdited" method="POST">
+    <form action="/customerEdited" method="POST" onsubmit="return checkSubmit();">
         <tr>
             <td>
                 <label for="ssNr">Personal Nr:</label>
             </td>
             <td>
-                <input type="text" name="ssNr" placeholder="ssNr..." required readonly value="{{ssNr}}">
+                <input type="text" name="ssNr" placeholder="ssNr..." required readonly value="{{ssNr}}" style="background-color: grey; width: 100%; height: 100%;">
             </td>
         </tr>
         <tr>
@@ -40,7 +40,7 @@
                 <label  for="phonennumber">Phonenumber:</label >
             </td>
             <td>
-                <input type="text" name="phonenumber" required placeholder="Phonenumber..." value="{{phonenumber}}">
+                <input type="text" name="phonenumber" id="phoneNumber" required placeholder="Phonenumber..." value="{{phonenumber}}">
             </td>
         </tr>
         <tr>
@@ -57,4 +57,39 @@
             </td>
         </tr>
 </table>
+<h1 id="warning" style="display: none; font-size: 15px;"></h1>
+<footer>
+    <script>
+        let phoneNumberInput = document.getElementById("phoneNumber");
+        phoneNumberInput.addEventListener('change', getPhoneNumber);
+        let warningMessage = document.getElementById("warning");
+
+        let phoneNumber = 0;
+        let phoneOk = true;
+
+        function getPhoneNumber() {
+            phoneNumber = this.value;
+        }
+
+        function validatePhone() {
+            if (!phoneNumber.match(/^([0])([0-9]{9})$/)) {
+                phoneOk = false;
+                warning.innerHTML = "Seems like this is not a valid phonenumber. Please try again.";
+            } else {
+                phoneOk = true;
+            }
+            return phoneOk;
+        }
+
+        function checkSubmit() {
+            validatePhone();
+            if (phoneOk == true) {
+                return true;
+            } else {
+                warning.style.display = "block";
+                return false;
+            }
+        }
+    </script>
+</footer>
 {% endblock %}

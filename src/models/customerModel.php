@@ -18,12 +18,20 @@
                 $adress = htmlspecialchars($customerRow["adress"]);
                 $postalAdress = htmlspecialchars($customerRow["postalAdress"]);
                 $phonenumber = htmlspecialchars($customerRow["phonenumber"]);
+
+                $customerQuery = "SELECT COUNT(*) FROM cars WHERE ssNr = :ssNr";
+                $customerStatement = $this->db->prepare($customerQuery);
+                $customerResult = $customerStatement->execute(["ssNr" => $ssNr]);
+                if (!$customerResult) die("Fatal Error.");
+                $carRows = $customerStatement->fetchAll();
+                $numberOfCars = htmlspecialchars($carRows[0]["COUNT(*)"]);
                 
                 $customer = ["ssNr" => $ssNr,
                              "name" => $name, 
                              "adress" => $adress, 
                              "postalAdress" => $postalAdress, 
-                             "phonenumber" => $phonenumber];
+                             "phonenumber" => $phonenumber,
+                             "numberOfCars" => $numberOfCars];
                 
                 $customers[] = $customer;
             }
@@ -55,22 +63,11 @@
             return;
         }
 
-        public function removeCustomer($ssNr) {
-            $customerQuery = "SELECT COUNT(*) FROM cars WHERE ssNr = :ssNr";
-            $customerStatement = $this->db->prepare($customerQuery);
-            $customerResult = $customerStatement->execute(["ssNr" => $ssNr]);
-            if (!$customerResult) die("Fatal Error.");
-            $carRows = $customerStatement->fetchAll();
-            $numberOfCars = htmlspecialchars($carRows[0]["COUNT(*)"]);
-            
-            if ($numberOfCars == 0) {
+        public function removeCustomer($ssNr) {       
                 $customerQuery  = "DELETE FROM customers WHERE ssNr = :ssNr";
                 $customerStatement = $this->db->prepare($customerQuery);
                 $customerStatement->execute(["ssNr" => $ssNr]);
                 if (!$customerStatement) die("Fatal Error.");
-            }
-            
-            return $numberOfCars;
         }
 
         public function checkOutList() {

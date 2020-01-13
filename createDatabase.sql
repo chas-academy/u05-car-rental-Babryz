@@ -45,14 +45,14 @@ insert into colors(color) values ('Blue'),
                                  ('Grey'),	
                                  ('Brown');
 
-insert into customers(ssNr, name, adress, postalAdress, phonenumber) values (199309230465, 'Kajsa Dahlgren', 'Aspgatan 23A', '75254 Uppsala', '0735526970'), 	
-                                                                            (195702130161, 'Stefan Backenfeldt', 'Faltorp 27', '75223 Uppsala', '0767894256'),	
-                                                                            (197103130436, 'Karim Andersson', 'Stora torget 52', '75275 Uppsala', '0790597122'),	
-                                                                            (196712075016, 'Karin Malmberg', 'Lilla gatan 3', '75272 Uppsala', '0735526666'),	
-                                                                            (195704143295, 'Lindsey Adams', 'Havtornsgatan 25', '75223 Uppsala', '0722255878'),	
-                                                                            (198703089543, 'Chen Li alm', 'Esplanaden 26C', '75212 Tierp', '0765568997'),	
-                                                                            (197001266894, 'Rasmus Tallhjort', 'Segelfeldtsgatan 33F', '75215 Uppsala', '0731130897'),	
-                                                                            (196107280833, 'Lisa Albrecht', 'Helveticatorg 32', '75289 Uppsala', '0708977377');
+insert into customers(ssNr, name, adress, postalAdress, phonenumber) values (9309230465, 'Kajsa Dahlgren', 'Aspgatan 23A', '75254 Uppsala', '0735526970'), 	
+                                                                            (5702130161, 'Stefan Backenfeldt', 'Faltorp 27', '75223 Uppsala', '0767894256'),	
+                                                                            (7103130436, 'Karim Andersson', 'Stora torget 52', '75275 Uppsala', '0790597122'),	
+                                                                            (6712075016, 'Karin Malmberg', 'Lilla gatan 3', '75272 Uppsala', '0735526666'),	
+                                                                            (5704143295, 'Lindsey Adams', 'Havtornsgatan 25', '75223 Uppsala', '0722255878'),	
+                                                                            (8703089543, 'Chen Li alm', 'Esplanaden 26C', '75212 Tierp', '0765568997'),	
+                                                                            (7001266894, 'Rasmus Tallhjort', 'Segelfeldtsgatan 33F', '75215 Uppsala', '0731130897'),	
+                                                                            (6107280833, 'Lisa Albrecht', 'Helveticatorg 32', '75289 Uppsala', '0708977377');
 insert into customers(ssnr) values (0);
                                                                             
 
@@ -66,7 +66,7 @@ insert into cars(regNr, year, price, make, color) values ('AFG171', 1976, 100, '
                                                          ('RUW790', 2008, 250, 'Toyota', 'Brown');
 
 
-
+update history set checkOutTime = '2020-01-03 20:20:20' where ssNr = 195704143295;
 
 
 
