@@ -1,16 +1,10 @@
 # u05-car-rental
 
 ## Left To Do
-### Make counter for sum.
-### Make checks on ssNr, phonenumber, regNr.
-### Fix the goddamn error when one customer rents same car twice.
+### Documentation. Whoop Whoop!
 
-## Need to press delete button twice for some reason...
-### Make check when removing customer to see if customer has any cars atm. (KINDA DONE).
 
-## 9   6   0   9   2   7   7   6   7
-## 2   1   2   1   2   1   2   1   2
-
-## 18  6   0   9   4   7   14  6   14
-
-## 1 + 8 + 6 + 0 + 9 + 4 + 7 + 1 + 4 + 6 + 1 + 8 = 51  
+## Known bugs
+### Need to press delete button twice for some reason when deleting customer who has previously rented a car.
+### If phonenumber is invalid then you have to spam submit to add customer after phonenumber changed to correct one.
+### If customer rents one car twice or more the checkIn on all events on the car with that customer changes to last one.

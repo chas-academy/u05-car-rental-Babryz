@@ -141,6 +141,12 @@
                 $checkIn = htmlspecialchars($historyRow["checkInTime"]);
                 $days = htmlspecialchars($historyRow["days"]);
                 $cost = htmlspecialchars($historyRow["cost"]);
+
+                if (!$checkIn) {
+                    $checkIn = "Checked Out";
+                    $days = 0;
+                    $cost = 0;
+                }
                 
                 $histor = ["regNr" => $regNr,
                         "ssNr" => $ssNr, 

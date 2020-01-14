@@ -16,12 +16,12 @@
         <td>{{histor.checkOut}}</td>
         <td>{{histor.checkIn}}</td>
         <td>{{histor.days}}</td>
-        <td>{{histor.cost}}</td>
+        <td id="cost">{{histor.cost}}</td>
     </tr>
     {% endfor %}
     <tr>
         <td colspan="5"><b>Sum:</b></td>
-        <td colspan="1"><b>{{sum}}</b></td>
+        <td colspan="1"><b id="sum"></b></td>
     </tr>
     <tr>
         <td colspan="6">
@@ -31,4 +31,29 @@
         </td>
     </tr>
 </table>
+<footer>
+    <script>
+        let costData = document.querySelectorAll('#cost');
+        let sumInput = document.getElementById("sum");
+        let eachCost = [];
+        let sum = 0;
+        
+        function totalCost() {
+
+            for (let i = 0; i < costData.length; i++) {
+                eachCost[i] = parseInt(costData[i].textContent, 10);
+            }
+
+            sum = eachCost.reduce((total, currentValue) => {
+                return total + currentValue;
+            });
+        }
+
+        totalCost();
+
+        sumInput.innerText = sum;
+
+      
+    </script>
+</footer>
 {% endblock %}

@@ -63,14 +63,11 @@
             $customerModel = new CustomerModel($this->db);
             $numberOfCars = $customerModel->removeCustomer($ssNr);
 
-            if ($numberOfCars == 0) {
-                $historyModel = new HistoryModel($this->db);
-                $historyModel->removeCustomerHistory($ssNr);
-            }
+            $historyModel = new HistoryModel($this->db);
+            $historyModel->removeCustomerHistory($ssNr);
         
             $properties = ["ssNr" => $ssNr, 
-                           "name" => $name, 
-                           "numberOfCars" => $numberOfCars];
+                           "name" => $name];
 
             return $this->render("customerRemoved.twig", $properties);
         }
