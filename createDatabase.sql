@@ -9,7 +9,7 @@ create table customers (ssNr bigint not null, primary key(ssNr), name varchar(25
 
 create table cars (regNr varchar(6), primary key(regNr),
                    year integer,
-                   price integer,
+                   price float,
                    make varchar(256), foreign key(make) references makes(make),
                    color varchar(256), foreign key(color) references colors(color),
                    ssNr bigint default 0, foreign key(ssNr) references customers(ssNr),

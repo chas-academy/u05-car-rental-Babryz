@@ -74,7 +74,7 @@
         function validatePhone() {
             if (!phoneNumber.match(/^([0])([0-9]{9})$/)) {
                 phoneOk = false;
-                warning.innerHTML = "Seems like this is not a valid phonenumber. Please try again.";
+                warningMessage.innerHTML = "Seems like this is not a valid phonenumber. Please try again.";
             } else {
                 phoneOk = true;
             }
@@ -86,7 +86,7 @@
             if (phoneOk == true) {
                 return true;
             } else {
-                warning.style.display = "block";
+                warningMessage.style.display = "block";
                 return false;
             }
         }
