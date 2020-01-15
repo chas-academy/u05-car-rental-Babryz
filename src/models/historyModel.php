@@ -69,6 +69,7 @@
                     $minutes = $difference->days * 24 * 60;
                     $minutes += $difference->h * 60;
                     $minutes += $difference->i;
+                    $minutes += $difference->s / 60;
                     
                     $unroundedDays = $minutes / 60 / 24;
 
