@@ -4,6 +4,7 @@ namespace Main\src\controllers;
     use Main\src\core\Request;
     use Main\src\utils\DependencyInjector;
 
+    // Class that all other controller classes exstends from and uses downbelow variables as constructors.
     abstract class AbstractController {
         protected $request;
         protected $db;

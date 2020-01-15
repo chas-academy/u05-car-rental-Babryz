@@ -1,8 +1,7 @@
 <?php
     namespace Main\src\utils;
     
-    //use Main\exceptions\notFoundException;
-
+    // Class that creates dependency injector to keep info on database etc. more private.
     class DependencyInjector {
         private $dependencies = [];
 
@@ -14,8 +13,6 @@
             if (isset($this->dependencies[$name])) {
                 return $this->dependencies[$name];
             }
-
-           // throw new NotFoundException($name . ': dependecy not found.');
         }
     }
 ?>

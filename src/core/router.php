@@ -5,17 +5,19 @@ namespace Main\src\core;
   use Main\src\controllers\MainMenuController;
   use Main\src\controllers\customerController;
 
-  
+  // Class for functions related to routing the correct controller and method in that controller.
   class Router {
       private $di;
       private $routeMap;
 
+      // Construct that defines databases connection and json file ror the routes.
       public function __construct($di) {
         $this->di = $di;
         $json = file_get_contents(__DIR__."/../../config/routes.json");
         $this->routeMap = json_decode($json, true); 
       }
 
+      // Function that finds correct controller and method to use depending on the url.
       public function route($request): string {
         $result = "";
         $path = $request->getPath();
@@ -34,9 +36,6 @@ namespace Main\src\core;
       }
 
       private function match($route, $path, $params, &$map) {
-        // $routeArray: ["editCustomer", ":customerNumber", ":customerName"]
-        // $pathArray ["editCustomer", "7", "Erik%20Dumas"]
-          
         $routeArray = explode("/", $route);
         $pathArray = explode("/", $path);
         $routeSize = count($routeArray);
@@ -44,26 +43,19 @@ namespace Main\src\core;
         
         if ($routeSize === $pathSize) {
           for ($index = 0; $index < $routeSize; ++$index) {
-            // $routeName: ":customerNumber"
-            // $pathName: "7"
             $routeName = $routeArray[$index];
             $pathName = $pathArray[$index];
     
             if ((strlen($routeName) > 0) && $routeName[0] === ":") {
-              // $key: "customerNumber"
-              // $value: "7"
               $key = substr($routeName, 1);
               $value = $pathName;
               
-              // "customerNumber": "number",
               if (($params != null) && isset($params[$key]) &&
                   !$this->typeMatch($value, $params[$key])) {
                 return false;
               }
     
-              // $map["customerNumber"] = "7";
-              // $map["customerName"] = "Erik Dumas";
-              $map[$key] = urldecode($value); // "%20" => " ", urlcode: " " => "%20"
+              $map[$key] = urldecode($value);
             }
             else if ($routeName !== $pathName) {
               return false;
@@ -76,9 +68,10 @@ namespace Main\src\core;
         return false;
       }
 
+      // Function that checks if params is a number or a string
       private function typeMatch($value, $type) {
         switch ($type) {
-          case "number": // ^: början, $: slutet, +: ett eller flera, *: noll eller flera, ?, exakt ett
+          case "number": 
             return preg_match('/^[0-9]+$/', $value);
         
           case "string":

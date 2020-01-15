@@ -5,11 +5,14 @@
     use Main\src\core\Request;
     use PDO;
 
+    // Class for all statements involving the car table
     class CarModel extends AbstractModel {
+        // Function to get all cars for car view.
         public function cars() {
             $carRows = $this->db->query("SELECT * FROM cars");
             if (!$carRows) die("Fatal Error.");
 
+            // Loop through all cars.
             $cars = [];
             foreach($carRows as $carRow) {
                 $regNr = htmlspecialchars($carRow["regNr"]);
@@ -33,6 +36,7 @@
             return $cars;
         }
 
+        // Function for getting all makes for the dropdown list when you add a car.
         public function makes() {
             $makeRows = $this->db->query("SELECT * FROM makes");
             if (!$makeRows) die("Fatal Error");
@@ -49,7 +53,7 @@
 
         }
         
-
+        // Function for getting all colors for the dropdown list when you add a car.
         public function colors() {
             $colorTableRows = $this->db->query("SELECT * FROM colors");
             if (!$colorTableRows) die("Fatal Error");
@@ -67,6 +71,7 @@
             return $colors;
         }
 
+        // Function for adding everything to the car table when you add a new car.
         public function addCar($regNr, $make, $color, $year, $price) {
 
             $carQuery = "INSERT INTO cars(regNr, year, price, make, color) " . "VALUES(:regNr, :year, :price, :make, :color)";
@@ -78,6 +83,7 @@
             return;
         }
 
+        // Function for updating edited fields when you edit a car.
         public function editCar($regNr, $newMake, $newColor, $newYear, $newPrice) {
             $carQuery = "UPDATE cars 
                               SET year = :year, price = :price, make = :make, color = :color
@@ -90,13 +96,12 @@
             return;
         }
 
+        // Function for removing the car from the car table when you remove that car.
         public function removeCar($regNr) {
             $carQuery  = "DELETE FROM cars WHERE regNr = :regNr";
             $carStatement = $this->db->prepare($carQuery);
             $carStatement->execute(["regNr" => $regNr]);
             if (!$carStatement) die("Fatal Error Car.");
-
-            return;
         }
 
         
