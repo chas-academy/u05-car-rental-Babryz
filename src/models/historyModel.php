@@ -30,57 +30,30 @@
             $historyParameters = ["regNr" => $regNr, "ssNr" => $ssNr];
             $historyRows = $historyStatement->execute($historyParameters);
             if (!$historyRows) die("Fatal Error");
+                
 
-            if (is_array($historyRows) || is_object($historyRows)) {
-                
-                foreach ($historyRows as $historyRow) {
-                $checkOut = htmlspecialchars($historyRow["checkOutTime"]);
-                $checkIn = htmlspecialchars($historyRow["checkInTime"]);
-                
-                $checkOutTime = new \DateTime($checkOut);
-                $checkInTime = new \DateTime($checkIn);
-                
-                $difference = $checkOutTime->diff($checkInTime);
-                $minutes = $difference->days * 24 * 60;
-                $minutes += $difference->h * 60;
-                $minutes += $difference->i;
-                
-                $unroundedDays = $minutes / 60 / 24;
-
-                $days = ceil($unroundedDays);
+            $time = $historyStatement->fetch();
+            $checkOut = $time["checkOutTime"];
+            $checkIn = $time["checkInTime"];
             
-                $historyQuery = "UPDATE history SET days = :days WHERE regNr = :regNr AND ssNr = :ssNr ORDER BY checkOutTime DESC LIMIT 1";
-                $historyStatement = $this->db->prepare($historyQuery);
-                $historyParameters = ["days" => $days, "regNr" => $regNr, "ssNr" => $ssNr];
-                $historyStatement->execute($historyParameters);
-                if (!$historyStatement) die("Fatal Error");
-                }
+            $checkOutTime = new \DateTime($checkOut);
+            $checkInTime = new \DateTime($checkIn);
+            
+            $difference = $checkOutTime->diff($checkInTime);
+            $minutes = $difference->days * 24 * 60;
+            $minutes += $difference->h * 60;
+            $minutes += $difference->i;
+            $minutes += $difference->s / 60;
+            
+            $unroundedDays = $minutes / 60 / 24;
+            $days = ceil($unroundedDays);
+        
+            $historyQuery = "UPDATE history SET days = :days WHERE regNr = :regNr AND ssNr = :ssNr ORDER BY checkOutTime DESC LIMIT 1";
+            $historyStatement = $this->db->prepare($historyQuery);
+            $historyParameters = ["days" => $days, "regNr" => $regNr, "ssNr" => $ssNr];
+            $historyStatement->execute($historyParameters);
+            if (!$historyStatement) die("Fatal Error");
                 
-                } else {
-                    $time = $historyStatement->fetch();
-
-                    $checkOut = $time["checkOutTime"];
-                    $checkIn = $time["checkInTime"];
-                    
-                    $checkOutTime = new \DateTime($checkOut);
-                    $checkInTime = new \DateTime($checkIn);
-                    
-                    $difference = $checkOutTime->diff($checkInTime);
-                    $minutes = $difference->days * 24 * 60;
-                    $minutes += $difference->h * 60;
-                    $minutes += $difference->i;
-                    $minutes += $difference->s / 60;
-                    
-                    $unroundedDays = $minutes / 60 / 24;
-
-                    $days = ceil($unroundedDays);
-                
-                    $historyQuery = "UPDATE history SET days = :days WHERE regNr = :regNr AND ssNr = :ssNr ORDER BY checkOutTime DESC LIMIT 1";
-                    $historyStatement = $this->db->prepare($historyQuery);
-                    $historyParameters = ["days" => $days, "regNr" => $regNr, "ssNr" => $ssNr];
-                    $historyStatement->execute($historyParameters);
-                    if (!$historyStatement) die("Fatal Error");
-                }
         }
 
         public function setTotalPrice($regNr, $ssNr) {
@@ -97,31 +70,14 @@
             $prices = $priceStatement->fetch();
             $dailyPrice = $prices["price"];
 
-            if (is_array($historyRows) || is_object($historyRows)) {
-                
-                foreach ($historyRows as $historyRow) {
-                $days = htmlspecialchars($historyRow["days"]);
-                $cost = $dailyPrice * $days;
-                echo $days;
-
-                $historyQuery = "UPDATE history SET cost = :cost WHERE regNr = :regNr AND ssNr = :ssNr ORDER BY checkOutTime DESC LIMIT 1";
-                $historyStatement = $this->db->prepare($historyQuery);
-                $historyParameters = ["cost" => $cost, "regNr" => $regNr, "ssNr" => $ssNr];
-                $historyStatement->execute($historyParameters);
-                if (!$historyStatement) die("Fatal Error");
-                }
-
-            } else {
-                $time = $historyStatement->fetch();
-                $days = $time["days"];
-                $cost = $dailyPrice * $days;
-
-                $historyQuery = "UPDATE history SET cost = :cost WHERE regNr = :regNr AND ssNr = :ssNr ORDER BY checkOutTime DESC LIMIT 1";
-                $historyStatement = $this->db->prepare($historyQuery);
-                $historyParameters = ["cost" => $cost, "regNr" => $regNr, "ssNr" => $ssNr];
-                $historyStatement->execute($historyParameters);
-                if (!$historyStatement) die("Fatal Error");
-            }
+            $time = $historyStatement->fetch();
+            $days = $time["days"];
+            $cost = $dailyPrice * $days;
+            $historyQuery = "UPDATE history SET cost = :cost WHERE regNr = :regNr AND ssNr = :ssNr ORDER BY checkOutTime DESC LIMIT 1";
+            $historyStatement = $this->db->prepare($historyQuery);
+            $historyParameters = ["cost" => $cost, "regNr" => $regNr, "ssNr" => $ssNr];
+            $historyStatement->execute($historyParameters);
+            if (!$historyStatement) die("Fatal Error");
         }
 
         public function viewHistory() {
