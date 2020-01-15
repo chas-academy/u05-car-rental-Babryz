@@ -8,7 +8,7 @@
             </td>
             <td>
                 <select name="customer" required style="width: 100%;">
-                    <option disabled selected hidden>--Select a customer--</option>
+                    <option disabled selected hidden>- Select a customer -</option>
                     {% for customer in customers %}
                      <option>{{customer.ssNr}} {{customer.name}}</option>
                     {% endfor %}
@@ -21,7 +21,7 @@
             </td>
             <td>
                 <select name="car" required style="width: 100%;">
-                    <option disabled selected hidden>--Select a car--</option>
+                    <option disabled selected hidden>- Select a car -</option>
                     {% for car in cars %}
                      <option>{{car.regNr}} {{car.make}}</option>
                     {% endfor %}

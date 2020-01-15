@@ -44,14 +44,10 @@
                 $minutes = $difference->days * 24 * 60;
                 $minutes += $difference->h * 60;
                 $minutes += $difference->i;
+                
+                $unroundedDays = $minutes / 60 / 24;
 
-                echo $difference->i;
-                
-                $days = $minutes / 60 / 24;
-                
-                if ($days < 1) {
-                    $days = 1;
-                }
+                $days = ceil($unroundedDays);
             
                 $historyQuery = "UPDATE history SET days = :days WHERE regNr = :regNr AND ssNr = :ssNr";
                 $historyStatement = $this->db->prepare($historyQuery);
@@ -74,11 +70,9 @@
                     $minutes += $difference->h * 60;
                     $minutes += $difference->i;
                     
-                    $days = $minutes / 60 / 24;
-                    
-                    if ($days < 1) {
-                        $days = 1;
-                    }
+                    $unroundedDays = $minutes / 60 / 24;
+
+                    $days = ceil($unroundedDays);
                 
                     $historyQuery = "UPDATE history SET days = :days WHERE regNr = :regNr AND ssNr = :ssNr";
                     $historyStatement = $this->db->prepare($historyQuery);

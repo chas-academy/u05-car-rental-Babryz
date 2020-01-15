@@ -7,7 +7,7 @@
                 <label for="regNr">Registration Nr:</label>
             </td>
             <td>
-                <input type="text" name="regNr" placeholder="regNr..." required readonly value="{{regNr}}">
+                <input type="text" name="regNr" placeholder="regNr..." required readonly value="{{regNr}}" style="background-color: grey; width: 100%;">
             </td>
         </tr>
         <tr>
@@ -16,7 +16,7 @@
             </td>
             <td>
                 <select name="make" required style="width: 100%;">
-                    <option disabled selected hidden>{{make}}</option>
+                    <option selected hidden>{{make}}</option>
                     {% for make in makes %}
                      <option>{{make.getMake}}</option>
                     {% endfor %}
@@ -29,7 +29,7 @@
             </td>
             <td>
                 <select name="color" required style="width: 100%;">
-                    <option disabled selected hidden>{{color}}</option>
+                    <option selected hidden>{{color}}</option>
                     {% for color in colors %}
                      <option>{{color.getColor}}</option>
                     {% endfor %}
@@ -49,7 +49,7 @@
                 <label  for="price">Price:</label >
             </td>
             <td>
-                <input type="text" name="price" required placeholder="price..." value="{{price}}">
+                <input type="number" name="price" required placeholder="price..." value="{{price}}" step=".01">
             </td>
         </tr>
         <tr>

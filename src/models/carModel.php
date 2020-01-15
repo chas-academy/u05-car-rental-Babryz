@@ -85,7 +85,7 @@
             $carStatement = $this->db->prepare($carQuery);
             $carParameters = ["year" => $newYear, "price" => $newPrice, "make" => $newMake, "color" => $newColor, "regNr" => $regNr];
             $carResult = $carStatement->execute($carParameters);
-            if (!$carResult) die("Fatal error.");
+            if (!$carResult) die("Fatal error No price.");
 
             return;
         }

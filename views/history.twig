@@ -41,7 +41,7 @@
         function totalCost() {
 
             for (let i = 0; i < costData.length; i++) {
-                eachCost[i] = parseInt(costData[i].textContent, 10);
+                eachCost[i] = parseFloat(costData[i].textContent, 10);
             }
 
             sum = eachCost.reduce((total, currentValue) => {

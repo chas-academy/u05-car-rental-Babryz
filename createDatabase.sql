@@ -19,8 +19,8 @@ create table history (regNr varchar(6), foreign key(regNr) references cars(regNr
                       ssNr bigint not null, foreign key(ssNr) references customers(ssNr),
                       checkOutTime datetime default current_timestamp,
                       checkInTime datetime,
-                      days int,
-                      cost int);
+                      days float,
+                      cost float);
 
 
 
@@ -64,9 +64,6 @@ insert into cars(regNr, year, price, make, color) values ('AFG171', 1976, 100, '
                                                          ('AGS673', 2010, 300, 'Renault', 'Red'),
                                                          ('PQU374', 1980, 100, 'Ford', 'Orange'),
                                                          ('RUW790', 2008, 250, 'Toyota', 'Brown');
-
-
-update history set checkOutTime = '2020-01-03 20:20:20' where ssNr = 195704143295;
 
 
 
