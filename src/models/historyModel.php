@@ -17,7 +17,7 @@
 
 
         public function checkIn($regNr, $ssNr) {
-            $historyQuery = "UPDATE history SET checkInTime = CURRENT_TIMESTAMP WHERE regNr = :regNr AND ssNr = :ssNr";
+            $historyQuery = "UPDATE history SET checkInTime = CURRENT_TIMESTAMP WHERE regNr = :regNr AND ssNr = :ssNr ORDER BY checkOutTime DESC LIMIT 1";
             $historyStatement = $this->db->prepare($historyQuery);
             $historyParameters = ["regNr" => $regNr, "ssNr" => $ssNr];
             $historyStatement->execute($historyParameters);
@@ -25,7 +25,7 @@
         }
 
         public function setDays($regNr, $ssNr) {
-            $historyQuery = "SELECT * FROM history WHERE regNr = :regNr AND ssNr = :ssNr";
+            $historyQuery = "SELECT * FROM history WHERE regNr = :regNr AND ssNr = :ssNr ORDER BY checkOutTime DESC LIMIT 1";
             $historyStatement = $this->db->prepare($historyQuery);
             $historyParameters = ["regNr" => $regNr, "ssNr" => $ssNr];
             $historyRows = $historyStatement->execute($historyParameters);
@@ -49,7 +49,7 @@
 
                 $days = ceil($unroundedDays);
             
-                $historyQuery = "UPDATE history SET days = :days WHERE regNr = :regNr AND ssNr = :ssNr";
+                $historyQuery = "UPDATE history SET days = :days WHERE regNr = :regNr AND ssNr = :ssNr ORDER BY checkOutTime DESC LIMIT 1";
                 $historyStatement = $this->db->prepare($historyQuery);
                 $historyParameters = ["days" => $days, "regNr" => $regNr, "ssNr" => $ssNr];
                 $historyStatement->execute($historyParameters);
@@ -75,7 +75,7 @@
 
                     $days = ceil($unroundedDays);
                 
-                    $historyQuery = "UPDATE history SET days = :days WHERE regNr = :regNr AND ssNr = :ssNr";
+                    $historyQuery = "UPDATE history SET days = :days WHERE regNr = :regNr AND ssNr = :ssNr ORDER BY checkOutTime DESC LIMIT 1";
                     $historyStatement = $this->db->prepare($historyQuery);
                     $historyParameters = ["days" => $days, "regNr" => $regNr, "ssNr" => $ssNr];
                     $historyStatement->execute($historyParameters);
@@ -84,7 +84,7 @@
         }
 
         public function setTotalPrice($regNr, $ssNr) {
-            $historyQuery = "SELECT * FROM history WHERE regNr = :regNr AND ssnr = :ssNr";
+            $historyQuery = "SELECT * FROM history WHERE regNr = :regNr AND ssnr = :ssNr ORDER BY checkOutTime DESC LIMIT 1";
             $historyStatement = $this->db->prepare($historyQuery);
             $historyParameters = ["regNr" => $regNr, "ssNr" => $ssNr];
             $historyRows = $historyStatement->execute($historyParameters);
@@ -104,7 +104,7 @@
                 $cost = $dailyPrice * $days;
                 echo $days;
 
-                $historyQuery = "UPDATE history SET cost = :cost WHERE regNr = :regNr AND ssNr = :ssNr";
+                $historyQuery = "UPDATE history SET cost = :cost WHERE regNr = :regNr AND ssNr = :ssNr ORDER BY checkOutTime DESC LIMIT 1";
                 $historyStatement = $this->db->prepare($historyQuery);
                 $historyParameters = ["cost" => $cost, "regNr" => $regNr, "ssNr" => $ssNr];
                 $historyStatement->execute($historyParameters);
@@ -116,7 +116,7 @@
                 $days = $time["days"];
                 $cost = $dailyPrice * $days;
 
-                $historyQuery = "UPDATE history SET cost = :cost WHERE regNr = :regNr AND ssNr = :ssNr";
+                $historyQuery = "UPDATE history SET cost = :cost WHERE regNr = :regNr AND ssNr = :ssNr ORDER BY checkOutTime DESC LIMIT 1";
                 $historyStatement = $this->db->prepare($historyQuery);
                 $historyParameters = ["cost" => $cost, "regNr" => $regNr, "ssNr" => $ssNr];
                 $historyStatement->execute($historyParameters);
