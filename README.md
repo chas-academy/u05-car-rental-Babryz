@@ -4,7 +4,7 @@
 ### Documentation. Whoop Whoop!
 
 ## Known bugs
-### If phonenumber is invalid then you have to spam submit to add customer after phonenumber changed to correct one.
+### If phonenumber is invalid then you have to spam submit about 4-8 times to add customer after phonenumber changed to correct one.
 
  9    6 0 9 2 7   7    6   7
  18   6 0 9 4 7   14   6   14

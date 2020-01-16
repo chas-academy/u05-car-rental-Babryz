@@ -33,24 +33,31 @@
 </table>
 <footer>
     <script>
+        // Code below is for calculating sum of all rented cars.
+
+        // Defines where all the costdata is(total price for every rented car).
         let costData = document.querySelectorAll('#cost');
+        // Defines where the sum should be inputed.
         let sumInput = document.getElementById("sum");
         let eachCost = [];
         let sum = 0;
         
+        // Function for adding the cost to eachother for the sum.
         function totalCost() {
-
+            // Loops through each cost and reformats them into floats.
             for (let i = 0; i < costData.length; i++) {
                 eachCost[i] = parseFloat(costData[i].textContent, 10);
             }
-
+            // Adds all values in eachCost array together to get the sum.
             sum = eachCost.reduce((total, currentValue) => {
                 return total + currentValue;
             });
         }
 
+        // Runs function as soon as page is loaded.
         totalCost();
 
+        // Changes the value of the sum column to the sum calculated above as soon as page is loaded.
         sumInput.innerText = sum;
 
       
