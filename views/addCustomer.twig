@@ -87,25 +87,27 @@
         // Function for formating and defining all different bits of it we need to validate.
         function formatSsNr() {
             // Reformats each number in personal number to an int and then take every other one times 2.
-            numbers[0] = 2 * parseInt(numbers[0], 10);
-            numbers[1] = 1 * parseInt(numbers[1], 10);
-            numbers[2] = 2 * parseInt(numbers[2], 10);
-            numbers[3] = 1 * parseInt(numbers[3], 10);
-            numbers[4] = 2 * parseInt(numbers[4], 10);
-            numbers[5] = 1 * parseInt(numbers[5], 10);
-            numbers[6] = 2 * parseInt(numbers[6], 10);
-            numbers[7] = 1 * parseInt(numbers[7], 10);
-            numbers[8] = 2 * parseInt(numbers[8], 10);
-            numbers[9] = parseInt(numbers[9], 10);
+                numbers[0] = 2 * parseInt(numbers[0], 10);
+                numbers[1] = 1 * parseInt(numbers[1], 10);
+                numbers[2] = 2 * parseInt(numbers[2], 10);
+                numbers[3] = 1 * parseInt(numbers[3], 10);
+                numbers[4] = 2 * parseInt(numbers[4], 10);
+                numbers[5] = 1 * parseInt(numbers[5], 10);
+                numbers[6] = 2 * parseInt(numbers[6], 10);
+                numbers[7] = 1 * parseInt(numbers[7], 10);
+                numbers[8] = 2 * parseInt(numbers[8], 10);
+                numbers[9] = parseInt(numbers[9], 10);
+
 
             // Checks if any number is now over 9, if so splits it up and add the two numbers together.
             function separateNums() {
-                for (let i = 0; i < numbers.length; i++) {
-                    if (numbers[i].toString(10).split("").length > 1) {
-                        number = numbers[i].toString(10).split("");
-                        numbers[i] = parseInt(number[0], 10) + parseInt(number[1], 10);
+                    for (let i = 0; i < numbers.length; i++) {
+                        if (numbers[i].toString(10).split("").length > 1) {
+                            number = numbers[i].toString(10).split("");
+                            numbers[i] = parseInt(number[0], 10) + parseInt(number[1], 10);
                     }
                 }
+                
             }
 
             separateNums();
@@ -200,7 +202,7 @@
                 warningMessage.innerHTML = "Seems like this is not a valid personal number. Please try again.";
             } else if (phoneOk == false) {
                 submitOk = false;
-                warningMessage.innerHTML = "Seems like this is not a valid phonenumber. Please try again.";
+                warningMessage.innerHTML = "Wrong format on phonenumber. Should be: 0XXXXXXXXX";
             } else {
                 submitOk = true;
             }
