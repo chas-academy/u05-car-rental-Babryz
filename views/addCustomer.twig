@@ -72,7 +72,7 @@
 
         let ssNr = 0;
         let submitOk = false;
-        let dateOk = true;
+        let dateOk = false;
         let numbers = 0;
         let sum = 0;
         let roundUp = 0;
@@ -111,7 +111,9 @@
             }
 
             separateNums();
+        }
 
+        function validateControllNumber() {
             // Adds all the numbers together to get the sum of them.
             sum = numbers[0] + 
                   numbers[1] + 
@@ -168,7 +170,7 @@
         phoneNumberInput.addEventListener('change', getPhoneNumber);
 
         let phoneNumber = 0;
-        let phoneOk = true;
+        let phoneOk = false;
 
         // Gets the value of the input field.
         function getPhoneNumber() {
@@ -185,19 +187,27 @@
             return phoneOk;
         }
 
+        let ssNrOk = false;
         // function below is for verifying form before it submits.
         function validateForm() {
-            validateDate();
-            formatSsNr();
+            if (ssNrOk == false) {
+                formatSsNr();
+            }
+            
             validatePhone();
+            validateControllNumber();
+            validateDate();
             // Checks if personal number is correct length, date, and controllnumber and also checks if phonenumber validation checked out as true.
             if (!ssNr.match(/^([0-9]){2}([0-1])([0-9])([0-9]{2})([0-9]{4})$/)) {
+                ssNrOk = false;
                 submitOk = false;
                 warningMessage.innerHTML = "Wrong format on personal number. Should be: YYMMDDXXXX.";
             } else if (dateOk == false) {
+                ssNrOk = false;
                 submitOk = false;
                 warningMessage.innerHTML = "Seems like this is not a valid date. Please try again."; 
             } else if (roundUp - sum != numbers[9]) {
+                ssNrOk = false;
                 submitOk = false;
                 warningMessage.innerHTML = "Seems like this is not a valid personal number. Please try again.";
             } else if (phoneOk == false) {
@@ -205,6 +215,10 @@
                 warningMessage.innerHTML = "Wrong format on phonenumber. Should be: 0XXXXXXXXX";
             } else {
                 submitOk = true;
+            }
+
+            if (ssNr.match(/^([0-9]){2}([0-1])([0-9])([0-9]{2})([0-9]{4})$/) && dateOk == true && roundUp - sum == numbers[9]) {
+                ssNrOk = true;
             }
         }
 
