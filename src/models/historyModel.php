@@ -129,7 +129,7 @@
 
         // Function for removing everything related to the car from history table upon removal of that car.
         public function removeCarHistory($regNr) {
-            $historyQuery = "DELETE FROM history WHERE regNr = :regNr";
+            $historyQuery = "UPDATE history set regNr = 'Removed' WHERE regNr = :regNr";
             $historyStatement = $this->db->prepare($historyQuery);
             $historyStatement->execute(["regNr" => $regNr]);
             if (!$historyStatement) die("Fatal Error History");
@@ -137,7 +137,7 @@
 
         // Function for removing everything related to the customer from history table upon removal of that customer.
         public function removeCustomerHistory($ssNr) {
-            $historyQuery = "DELETE FROM history WHERE ssNr = :ssNr";
+            $historyQuery = "UPDATE history set ssNr = 0 WHERE ssNr = :ssNr";
             $historyStatement = $this->db->prepare($historyQuery);
             $historyStatement->execute(["ssNr" => $ssNr]);
             if (!$historyStatement) die("Fatal Error History");

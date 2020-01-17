@@ -11,8 +11,16 @@
     </tr>
     {% for histor in history %}
     <tr>
-        <td>{{histor.regNr}}</td>
-        <td>{{histor.ssNr}}</td>
+        {% if histor.regNr == "Removed"%}
+          <td>Removed</td>
+        {% else %}
+          <td>{{histor.regNr}}</td>
+        {% endif %}
+        {% if histor.ssNr == 0 %}
+          <td>Removed</td>
+        {% else %}
+          <td>{{histor.ssNr}}</td>
+        {% endif %}
         <td>{{histor.checkOut}}</td>
         <td>{{histor.checkIn}}</td>
         <td>{{histor.days}}</td>

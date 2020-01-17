@@ -79,7 +79,7 @@
         function validatePhone() {
             if (!phoneNumber.match(/^([0])([0-9]{9})$/)) {
                 phoneOk = false;
-                warningMessage.innerHTML = "Seems like this is not a valid phonenumber. Please try again.";
+                warningMessage.innerHTML = "Wrong format on phonenumber. Should be: 0XXXXXXXXX. Please try again.";
             } else {
                 phoneOk = true;
             }

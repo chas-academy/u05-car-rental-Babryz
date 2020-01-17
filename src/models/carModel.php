@@ -9,7 +9,7 @@
     class CarModel extends AbstractModel {
         // Function to get all cars for car view.
         public function cars() {
-            $carRows = $this->db->query("SELECT * FROM cars");
+            $carRows = $this->db->query("SELECT * FROM cars WHERE NOT regNr = 'Removed'");
             if (!$carRows) die("Fatal Error.");
 
             // Loop through all cars.

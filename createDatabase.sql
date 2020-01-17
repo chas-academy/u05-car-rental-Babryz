@@ -7,7 +7,7 @@ create table colors (color varchar(256), primary key(color));
 
 create table customers (ssNr bigint not null, primary key(ssNr), name varchar(256), adress varchar(256), postalAdress varchar(256), phonenumber varchar(10));	
 
-create table cars (regNr varchar(6), primary key(regNr),
+create table cars (regNr varchar(7), primary key(regNr),
                    year integer,
                    price float,
                    make varchar(256), foreign key(make) references makes(make),
@@ -15,7 +15,7 @@ create table cars (regNr varchar(6), primary key(regNr),
                    ssNr bigint default 0, foreign key(ssNr) references customers(ssNr),
                    checkOutTime datetime default current_timestamp);
 
-create table history (regNr varchar(6), foreign key(regNr) references cars(regNr),
+create table history (regNr varchar(7), foreign key(regNr) references cars(regNr),
                       ssNr bigint not null, foreign key(ssNr) references customers(ssNr),
                       checkOutTime datetime default current_timestamp,
                       checkInTime datetime,
@@ -64,6 +64,8 @@ insert into cars(regNr, year, price, make, color) values ('AFG171', 1976, 100, '
                                                          ('AGS673', 2010, 300, 'Renault', 'Red'),
                                                          ('PQU374', 1980, 100, 'Ford', 'Orange'),
                                                          ('RUW790', 2008, 250, 'Toyota', 'Brown');
+
+insert into cars(regNr) values ('Removed');
 
 
 
