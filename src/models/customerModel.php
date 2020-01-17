@@ -9,7 +9,7 @@
     class CustomerModel extends AbstractModel {
         // Function for getting all customer data for the customers page.
         public function customers() {
-            $customerRows = $this->db->query("SELECT * FROM customers where not ssNr=0");
+            $customerRows = $this->db->query("SELECT * FROM customers WHERE NOT ssNr=0");
             if (!$customerRows) die($this->db->errorInfo());
 
             // Looping through all rows in customers table.

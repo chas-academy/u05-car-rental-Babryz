@@ -11,7 +11,7 @@
         // Function for getting all available cars for the checkout dropdown list.
         public function checkOutList() {
             // Fetches all cars where personal number(ssNr) is not changed from default(0) which are the available cars.
-            $carRows = $this->db->query("SELECT * FROM cars where ssNr=0");
+            $carRows = $this->db->query("SELECT * FROM cars WHERE ssNr=0 AND NOT regNr = 'Removed'");
             if (!$carRows) die("Fatal Error.");
 
             // Looping through all rows of available cars.
